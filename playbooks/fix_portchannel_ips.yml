@@ -1,0 +1,74 @@
+---
+- name: Fix Port-Channel IP Addresses on Site 3 Leafs
+  hosts: dub-st3-lf1,dub-st3-lf2
+  gather_facts: false
+  
+  tasks:
+    - name: Show what we're about to configure
+      ansible.builtin.debug:
+        msg: |
+          Configuring {{ inventory_hostname }}:
+          {% for item in l3_interfaces %}
+          - {{ item.name }}: {{ item.ipv4[0].address }}
+          {% endfor %}
+
+    - name: CRITICAL - Ensure port-channels are Layer 3 (no switchport)
+      cisco.nxos.nxos_config:
+        lines:
+          - "no switchport"
+        parents: "interface {{ item.name }}"
+        save_when: modified
+      loop: "{{ l3_interfaces }}"
+      when: l3_interfaces is defined
+      register: no_switchport_result
+
+    - name: Show no switchport results
+      ansible.builtin.debug:
+        var: no_switchport_result
+
+    - name: Apply IP addresses to port-channels
+      cisco.nxos.nxos_config:
+        lines:
+          - "ip address {{ item.ipv4[0].address }}"
+          - "no shutdown"
+        parents: "interface {{ item.name }}"
+        save_when: modified
+      loop: "{{ l3_interfaces }}"
+      when: l3_interfaces is defined
+      register: ip_result
+
+    - name: Show what changed
+      ansible.builtin.debug:
+        msg: "IP config result: {{ ip_result }}"
+
+    - name: Wait for interfaces to stabilize
+      ansible.builtin.pause:
+        seconds: 3
+
+    - name: Verify port-channel configuration
+      cisco.nxos.nxos_command:
+        commands:
+          - show run interface {{ item.name }}
+      loop: "{{ l3_interfaces }}"
+      register: po_config
+
+    - name: Display port-channel running config
+      ansible.builtin.debug:
+        msg: |
+          {{ inventory_hostname }} - {{ item.item.name }} config:
+          {{ item.stdout[0] }}
+      loop: "{{ po_config.results }}"
+      loop_control:
+        label: "{{ item.item.name }}"
+
+    - name: Verify IP addresses are applied
+      cisco.nxos.nxos_command:
+        commands:
+          - show ip interface brief | include port-channel
+      register: verify
+
+    - name: Display IP interface status
+      ansible.builtin.debug:
+        msg: |
+          {{ inventory_hostname }} - Port-Channel IP Status:
+          {{ verify.stdout[0] }}

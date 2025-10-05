@@ -1,0 +1,33 @@
+---
+- name: Fix Port-Channel IP Addresses on Site 3 Leafs
+  hosts: dub-st3-lf1,dub-st3-lf2
+  gather_facts: false
+  
+  tasks:
+    - name: Apply IP addresses to port-channels using explicit config
+      cisco.nxos.nxos_config:
+        lines:
+          - "ip address {{ item.ipv4[0].address }}"
+          - "no shutdown"
+        parents: "interface {{ item.name }}"
+      loop: "{{ l3_interfaces }}"
+      when: 
+        - l3_interfaces is defined
+        - item.name is match("port-channel.*")
+      register: ip_result
+
+    - name: Wait for interfaces to come up
+      ansible.builtin.pause:
+        seconds: 5
+
+    - name: Verify IP addresses were applied
+      cisco.nxos.nxos_command:
+        commands:
+          - show ip interface brief | include port-channel
+      register: verify
+
+    - name: Display results
+      ansible.builtin.debug:
+        msg: |
+          {{ inventory_hostname }} - Port-Channel IP Addresses:
+          {{ verify.stdout[0] }}
