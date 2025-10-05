@@ -22,6 +22,14 @@
           - "interface {{ item.name }}"
       loop: "{{ lag_interfaces }}"
 
+    - name: Configure port-channels as Layer 3 interfaces (no switchport)
+      cisco.nxos.nxos_config:
+        lines:
+          - "no switchport"
+        parents: "interface {{ item.name }}"
+      loop: "{{ l3_interfaces }}"
+      when: l3_interfaces is defined
+
     - name: Configure interface properties (description, MTU, admin state)
       cisco.nxos.nxos_interfaces:
         config: "{{ interfaces }}"
