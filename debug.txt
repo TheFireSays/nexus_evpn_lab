@@ -1,308 +1,139 @@
-ansible-playbook [core 2.16.3]
-  config file = /home/overlord/Desktop/nexus_evpn_lab/ansible.cfg
-  configured module search path = ['/home/overlord/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/lib/python3/dist-packages/ansible
-  ansible collection location = /home/overlord/.ansible/collections:/usr/share/ansible/collections
-  executable location = /usr/bin/ansible-playbook
-  python version = 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] (/usr/bin/python3)
-  jinja version = 3.1.2
-  libyaml = True
-Using /home/overlord/Desktop/nexus_evpn_lab/ansible.cfg as config file
-Parsed /home/overlord/Desktop/nexus_evpn_lab/inventory inventory source with ini plugin
-Skipping callback 'default', as we already have a stdout callback.
-Skipping callback 'minimal', as we already have a stdout callback.
-Skipping callback 'oneline', as we already have a stdout callback.
 
-PLAYBOOK: pb_build_netbox_db.yml ***********************************************
-1 plays in playbooks/pb_build_netbox_db.yml
+PLAY [Check Current State of ST3 Leaf Port-Channels] ***************************
 
-PLAY [Create NetBox Sites for Multi-Site EVPN/VXLAN Lab] ***********************
+TASK [Get current running config for port-channels] ****************************
+ok: [dub-st3-lf1]
+ok: [dub-st1-lf1]
+ok: [dub-st2-lf1]
+ok: [dub-st1-lf2]
+ok: [dub-st2-lf2]
+ok: [dub-st3-lf2]
 
-TASK [Test NetBox API connectivity] ********************************************
-task path: /home/overlord/Desktop/nexus_evpn_lab/playbooks/pb_build_netbox_db.yml:25
-<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: overlord
-<127.0.0.1> EXEC /bin/sh -c 'echo ~overlord && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/overlord/.ansible/tmp `"&& mkdir "` echo /home/overlord/.ansible/tmp/ansible-tmp-1759103267.4783459-647113-70316488697447 `" && echo ansible-tmp-1759103267.4783459-647113-70316488697447="` echo /home/overlord/.ansible/tmp/ansible-tmp-1759103267.4783459-647113-70316488697447 `" ) && sleep 0'
-Using module file /usr/lib/python3/dist-packages/ansible/modules/uri.py
-<127.0.0.1> PUT /home/overlord/.ansible/tmp/ansible-local-647108shtxnuf8/tmpzuw3tykn TO /home/overlord/.ansible/tmp/ansible-tmp-1759103267.4783459-647113-70316488697447/AnsiballZ_uri.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/overlord/.ansible/tmp/ansible-tmp-1759103267.4783459-647113-70316488697447/ /home/overlord/.ansible/tmp/ansible-tmp-1759103267.4783459-647113-70316488697447/AnsiballZ_uri.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/overlord/.ansible/tmp/ansible-tmp-1759103267.4783459-647113-70316488697447/AnsiballZ_uri.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/overlord/.ansible/tmp/ansible-tmp-1759103267.4783459-647113-70316488697447/ > /dev/null 2>&1 && sleep 0'
-ok: [localhost] => {
-    "allow": "GET, HEAD, OPTIONS",
-    "api_version": "4.3",
-    "changed": false,
-    "connection": "close",
-    "content_language": "en",
-    "content_length": "729",
-    "content_type": "application/json",
-    "cookies": {},
-    "cookies_string": "",
-    "cross_origin_opener_policy": "same-origin",
-    "date": "Sun, 28 Sep 2025 23:47:48 GMT",
-    "elapsed": 0,
-    "invocation": {
-        "module_args": {
-            "attributes": null,
-            "body": null,
-            "body_format": "raw",
-            "ca_path": null,
-            "ciphers": null,
-            "client_cert": null,
-            "client_key": null,
-            "creates": null,
-            "decompress": true,
-            "dest": null,
-            "follow_redirects": "safe",
-            "force": false,
-            "force_basic_auth": false,
-            "group": null,
-            "headers": {
-                "Accept": "application/json",
-                "Authorization": "Token bf14f68e820a2bb894299ed1314a098a416b12af"
-            },
-            "http_agent": "ansible-httpget",
-            "method": "GET",
-            "mode": null,
-            "owner": null,
-            "remote_src": false,
-            "removes": null,
-            "return_content": false,
-            "selevel": null,
-            "serole": null,
-            "setype": null,
-            "seuser": null,
-            "src": null,
-            "status_code": [
-                200
-            ],
-            "timeout": 30,
-            "unix_socket": null,
-            "unredirected_headers": [],
-            "unsafe_writes": false,
-            "url": "https://vcfx1495.cloud.netboxapp.com/api/",
-            "url_password": null,
-            "url_username": null,
-            "use_gssapi": false,
-            "use_netrc": true,
-            "use_proxy": true,
-            "validate_certs": false
-        }
-    },
-    "json": {
-        "circuits": "https://vcfx1495.cloud.netboxapp.com/api/circuits/",
-        "core": "https://vcfx1495.cloud.netboxapp.com/api/core/",
-        "dcim": "https://vcfx1495.cloud.netboxapp.com/api/dcim/",
-        "extras": "https://vcfx1495.cloud.netboxapp.com/api/extras/",
-        "ipam": "https://vcfx1495.cloud.netboxapp.com/api/ipam/",
-        "plugins": "https://vcfx1495.cloud.netboxapp.com/api/plugins/",
-        "status": "https://vcfx1495.cloud.netboxapp.com/api/status/",
-        "tenancy": "https://vcfx1495.cloud.netboxapp.com/api/tenancy/",
-        "users": "https://vcfx1495.cloud.netboxapp.com/api/users/",
-        "virtualization": "https://vcfx1495.cloud.netboxapp.com/api/virtualization/",
-        "vpn": "https://vcfx1495.cloud.netboxapp.com/api/vpn/",
-        "wireless": "https://vcfx1495.cloud.netboxapp.com/api/wireless/"
-    },
-    "msg": "OK (729 bytes)",
-    "redirected": false,
-    "referrer_policy": "same-origin",
-    "status": 200,
-    "strict_transport_security": "max-age=31536000; includeSubDomains",
-    "url": "https://vcfx1495.cloud.netboxapp.com/api/",
-    "vary": "Accept-Encoding, HX-Request, Accept-Language, Cookie, origin",
-    "x_content_type_options": "nosniff",
-    "x_controller": "nbl-ingress-getha9-public-1",
-    "x_frame_options": "SAMEORIGIN",
-    "x_request_id": "6ff84aeb-119d-4722-9453-67fceab9682a"
+TASK [Display current port-channel config] *************************************
+ok: [dub-st1-lf1] => {
+    "msg": "=== dub-st1-lf1 Port-Channel Running Config ===\ninterface port-channel1111\n  description Uplink to dub-st1-sp1\n  mtu 9216\n  ip address 30.30.30.98/30\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\ninterface port-channel1112\n  description Uplink to dub-st1-sp2\n  mtu 9216\n  ip address 30.30.30.106/30\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\n"
+}
+ok: [dub-st2-lf1] => {
+    "msg": "=== dub-st2-lf1 Port-Channel Running Config ===\ninterface port-channel2111\n  description Uplink to dub-st2-sp1\n  mtu 9216\n  ip address 30.30.30.114/30\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\ninterface port-channel2112\n  description Uplink to dub-st2-sp2\n  mtu 9216\n  ip address 30.30.30.122/30\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\n"
+}
+ok: [dub-st1-lf2] => {
+    "msg": "=== dub-st1-lf2 Port-Channel Running Config ===\ninterface port-channel1111\n  description Uplink to dub-st1-sp1\n  mtu 9216\n  ip address 30.30.30.102/30\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\ninterface port-channel1112\n  description Uplink to dub-st1-sp2\n  mtu 9216\n  ip address 30.30.30.110/30\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\n"
+}
+ok: [dub-st2-lf2] => {
+    "msg": "=== dub-st2-lf2 Port-Channel Running Config ===\ninterface port-channel312\ninterface port-channel2121\n  description Uplink to dub-st2-sp1\n  mtu 9216\n  ip address 30.30.30.118/30\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\ninterface port-channel2122\n  description Uplink to dub-st2-sp2\n  mtu 9216\n  ip address 30.30.30.126/30\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\n"
+}
+ok: [dub-st3-lf1] => {
+    "msg": "=== dub-st3-lf1 Port-Channel Running Config ===\ninterface port-channel3131\n  description Uplink to dub-st3-sp1\n  mtu 9216\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\ninterface port-channel3231\n  description Uplink to dub-st3-sp2\n  mtu 9216\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\n"
+}
+ok: [dub-st3-lf2] => {
+    "msg": "=== dub-st3-lf2 Port-Channel Running Config ===\ninterface port-channel3111\n  description Uplink to dub-st3-sp1\n  mtu 9216\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\ninterface port-channel3112\n  description Uplink to dub-st3-sp2\n  mtu 9216\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\n"
 }
 
-TASK [Display API response] ****************************************************
-task path: /home/overlord/Desktop/nexus_evpn_lab/playbooks/pb_build_netbox_db.yml:36
-ok: [localhost] => {
-    "msg": "NetBox API is accessible. Version: Unknown"
+TASK [Check if port-channels are L2 or L3] *************************************
+ok: [dub-st1-lf2] => (item={'ipv4': [{'address': '30.30.30.102/30'}], 'name': 'port-channel1111'})
+ok: [dub-st1-lf1] => (item={'ipv4': [{'address': '30.30.30.98/30'}], 'name': 'port-channel1111'})
+ok: [dub-st2-lf1] => (item={'ipv4': [{'address': '30.30.30.114/30'}], 'name': 'port-channel2111'})
+ok: [dub-st2-lf2] => (item={'ipv4': [{'address': '30.30.30.118/30'}], 'name': 'port-channel2121'})
+ok: [dub-st3-lf1] => (item={'ipv4': [{'address': '30.30.30.131/30'}], 'name': 'port-channel3131'})
+ok: [dub-st1-lf2] => (item={'ipv4': [{'address': '30.30.30.110/30'}], 'name': 'port-channel1112'})
+ok: [dub-st3-lf1] => (item={'ipv4': [{'address': '30.30.30.139/30'}], 'name': 'port-channel3231'})
+ok: [dub-st2-lf2] => (item={'ipv4': [{'address': '30.30.30.126/30'}], 'name': 'port-channel2122'})
+ok: [dub-st1-lf1] => (item={'ipv4': [{'address': '30.30.30.106/30'}], 'name': 'port-channel1112'})
+ok: [dub-st2-lf1] => (item={'ipv4': [{'address': '30.30.30.122/30'}], 'name': 'port-channel2112'})
+ok: [dub-st3-lf2] => (item={'ipv4': [{'address': '30.30.30.135/30'}], 'name': 'port-channel3111'})
+ok: [dub-st3-lf2] => (item={'ipv4': [{'address': '30.30.30.143/30'}], 'name': 'port-channel3112'})
+
+TASK [Parse and display interface mode] ****************************************
+ok: [dub-st1-lf1] => (item={'changed': False, 'stdout': ['port-channel1111 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0c5b.0000.1b08 (bia 0c5b.0000.0101)\n  Description: Uplink to dub-st1-sp1\n  Internet Address is 30.30.30.98/30\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/1, Eth1/2\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 384 bits/sec, 0 packets/sec\n    30 seconds output rate 152 bits/sec, 0 packets/sec\n    input rate 384 bps, 0 pps; output rate 152 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 400 bits/sec, 0 packets/sec\n    300 seconds output rate 384 bits/sec, 0 packets/sec\n    input rate 400 bps, 0 pps; output rate 384 bps, 0 pps\n  RX\n    387 unicast packets  12985 multicast packets  2 broadcast packets\n    13374 input packets  2491482 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    259 unicast packets  12980 multicast packets  1 broadcast packets\n    13240 output packets  2421372 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel1111 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0c5b.0000.1b08 (bia 0c5b.0000.0101)', '  Description: Uplink to dub-st1-sp1', '  Internet Address is 30.30.30.98/30', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/1, Eth1/2', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 384 bits/sec, 0 packets/sec', '    30 seconds output rate 152 bits/sec, 0 packets/sec', '    input rate 384 bps, 0 pps; output rate 152 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 400 bits/sec, 0 packets/sec', '    300 seconds output rate 384 bits/sec, 0 packets/sec', '    input rate 400 bps, 0 pps; output rate 384 bps, 0 pps', '  RX', '    387 unicast packets  12985 multicast packets  2 broadcast packets', '    13374 input packets  2491482 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    259 unicast packets  12980 multicast packets  1 broadcast packets', '    13240 output packets  2421372 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel1111'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.98/30'}], 'name': 'port-channel1111'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel1111:\n"
+}
+ok: [dub-st1-lf2] => (item={'changed': False, 'stdout': ['port-channel1111 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0c5f.0000.1b08 (bia 0c5f.0000.0101)\n  Description: Uplink to dub-st1-sp1\n  Internet Address is 30.30.30.102/30\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 250/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/1, Eth1/2\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 328 bits/sec, 0 packets/sec\n    30 seconds output rate 104 bits/sec, 0 packets/sec\n    input rate 328 bps, 0 pps; output rate 104 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 384 bits/sec, 0 packets/sec\n    300 seconds output rate 368 bits/sec, 0 packets/sec\n    input rate 384 bps, 0 pps; output rate 368 bps, 0 pps\n  RX\n    360 unicast packets  12983 multicast packets  3 broadcast packets\n    13346 input packets  2490532 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    18380339021772034049 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    270 unicast packets  12979 multicast packets  639139147084201986 broadcast packets\n    639139147084215235 output packets  18446640510109919063 bytes\n    18446640510107468028 jumbo packets\n    297716968113571071 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel1111 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0c5f.0000.1b08 (bia 0c5f.0000.0101)', '  Description: Uplink to dub-st1-sp1', '  Internet Address is 30.30.30.102/30', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 250/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/1, Eth1/2', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 328 bits/sec, 0 packets/sec', '    30 seconds output rate 104 bits/sec, 0 packets/sec', '    input rate 328 bps, 0 pps; output rate 104 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 384 bits/sec, 0 packets/sec', '    300 seconds output rate 368 bits/sec, 0 packets/sec', '    input rate 384 bps, 0 pps; output rate 368 bps, 0 pps', '  RX', '    360 unicast packets  12983 multicast packets  3 broadcast packets', '    13346 input packets  2490532 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    18380339021772034049 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    270 unicast packets  12979 multicast packets  639139147084201986 broadcast packets', '    639139147084215235 output packets  18446640510109919063 bytes', '    18446640510107468028 jumbo packets', '    297716968113571071 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel1111'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.102/30'}], 'name': 'port-channel1111'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel1111:\n"
+}
+ok: [dub-st1-lf1] => (item={'changed': False, 'stdout': ['port-channel1112 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0c5b.0000.1b08 (bia 0c5b.0000.0103)\n  Description: Uplink to dub-st1-sp2\n  Internet Address is 30.30.30.106/30\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 29800/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/3, Eth1/4\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 456 bits/sec, 0 packets/sec\n    30 seconds output rate 144 bits/sec, 0 packets/sec\n    input rate 456 bps, 0 pps; output rate 144 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 168 bits/sec, 0 packets/sec\n    300 seconds output rate 376 bits/sec, 0 packets/sec\n    input rate 168 bps, 0 pps; output rate 376 bps, 0 pps\n  RX\n    341 unicast packets  12990 multicast packets  3 broadcast packets\n    13334 input packets  2455808 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    18380339021772034049 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    269 unicast packets  12974 multicast packets  2 broadcast packets\n    13245 output packets  2421482 bytes\n    0 jumbo packets\n    297716968113571071 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel1112 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0c5b.0000.1b08 (bia 0c5b.0000.0103)', '  Description: Uplink to dub-st1-sp2', '  Internet Address is 30.30.30.106/30', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 29800/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/3, Eth1/4', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 456 bits/sec, 0 packets/sec', '    30 seconds output rate 144 bits/sec, 0 packets/sec', '    input rate 456 bps, 0 pps; output rate 144 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 168 bits/sec, 0 packets/sec', '    300 seconds output rate 376 bits/sec, 0 packets/sec', '    input rate 168 bps, 0 pps; output rate 376 bps, 0 pps', '  RX', '    341 unicast packets  12990 multicast packets  3 broadcast packets', '    13334 input packets  2455808 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    18380339021772034049 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    269 unicast packets  12974 multicast packets  2 broadcast packets', '    13245 output packets  2421482 bytes', '    0 jumbo packets', '    297716968113571071 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel1112'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.106/30'}], 'name': 'port-channel1112'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel1112:\n"
+}
+ok: [dub-st1-lf2] => (item={'changed': False, 'stdout': ['port-channel1112 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0c5f.0000.1b08 (bia 0c5f.0000.0103)\n  Description: Uplink to dub-st1-sp2\n  Internet Address is 30.30.30.110/30\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/3, Eth1/4\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 160 bits/sec, 0 packets/sec\n    30 seconds output rate 152 bits/sec, 0 packets/sec\n    input rate 160 bps, 0 pps; output rate 152 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 368 bits/sec, 0 packets/sec\n    300 seconds output rate 368 bits/sec, 0 packets/sec\n    input rate 368 bps, 0 pps; output rate 368 bps, 0 pps\n  RX\n    350 unicast packets  12965 multicast packets  3 broadcast packets\n    13318 input packets  2456564 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    284 unicast packets  12974 multicast packets  2 broadcast packets\n    13260 output packets  2452008 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel1112 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0c5f.0000.1b08 (bia 0c5f.0000.0103)', '  Description: Uplink to dub-st1-sp2', '  Internet Address is 30.30.30.110/30', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/3, Eth1/4', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 160 bits/sec, 0 packets/sec', '    30 seconds output rate 152 bits/sec, 0 packets/sec', '    input rate 160 bps, 0 pps; output rate 152 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 368 bits/sec, 0 packets/sec', '    300 seconds output rate 368 bits/sec, 0 packets/sec', '    input rate 368 bps, 0 pps; output rate 368 bps, 0 pps', '  RX', '    350 unicast packets  12965 multicast packets  3 broadcast packets', '    13318 input packets  2456564 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    284 unicast packets  12974 multicast packets  2 broadcast packets', '    13260 output packets  2452008 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel1112'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.110/30'}], 'name': 'port-channel1112'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel1112:\n"
+}
+ok: [dub-st2-lf1] => (item={'changed': False, 'stdout': ['port-channel2111 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0c6f.0000.1b08 (bia 0c6f.0000.0102)\n  Description: Uplink to dub-st2-sp1\n  Internet Address is 30.30.30.114/30\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/1, Eth1/2\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 144 bits/sec, 0 packets/sec\n    30 seconds output rate 144 bits/sec, 0 packets/sec\n    input rate 144 bps, 0 pps; output rate 144 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 368 bits/sec, 0 packets/sec\n    300 seconds output rate 360 bits/sec, 0 packets/sec\n    input rate 368 bps, 0 pps; output rate 360 bps, 0 pps\n  RX\n    328 unicast packets  12965 multicast packets  2 broadcast packets\n    13295 input packets  2451521 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    285 unicast packets  12964 multicast packets  2 broadcast packets\n    13251 output packets  2421368 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel2111 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0c6f.0000.1b08 (bia 0c6f.0000.0102)', '  Description: Uplink to dub-st2-sp1', '  Internet Address is 30.30.30.114/30', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/1, Eth1/2', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 144 bits/sec, 0 packets/sec', '    30 seconds output rate 144 bits/sec, 0 packets/sec', '    input rate 144 bps, 0 pps; output rate 144 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 368 bits/sec, 0 packets/sec', '    300 seconds output rate 360 bits/sec, 0 packets/sec', '    input rate 368 bps, 0 pps; output rate 360 bps, 0 pps', '  RX', '    328 unicast packets  12965 multicast packets  2 broadcast packets', '    13295 input packets  2451521 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    285 unicast packets  12964 multicast packets  2 broadcast packets', '    13251 output packets  2421368 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel2111'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.114/30'}], 'name': 'port-channel2111'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel2111:\n"
+}
+ok: [dub-st2-lf2] => (item={'changed': False, 'stdout': ['port-channel2121 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0cf2.0000.1b08 (bia 0cf2.0000.0101)\n  Description: Uplink to dub-st2-sp1\n  Internet Address is 30.30.30.118/30\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/1, Eth1/2\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 448 bits/sec, 0 packets/sec\n    30 seconds output rate 448 bits/sec, 0 packets/sec\n    input rate 448 bps, 0 pps; output rate 448 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 168 bits/sec, 0 packets/sec\n    300 seconds output rate 176 bits/sec, 0 packets/sec\n    input rate 168 bps, 0 pps; output rate 176 bps, 0 pps\n  RX\n    316 unicast packets  12976 multicast packets  2 broadcast packets\n    13294 input packets  2456088 bytes\n    2 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    275 unicast packets  12963 multicast packets  2 broadcast packets\n    13240 output packets  2420280 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel2121 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0cf2.0000.1b08 (bia 0cf2.0000.0101)', '  Description: Uplink to dub-st2-sp1', '  Internet Address is 30.30.30.118/30', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/1, Eth1/2', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 448 bits/sec, 0 packets/sec', '    30 seconds output rate 448 bits/sec, 0 packets/sec', '    input rate 448 bps, 0 pps; output rate 448 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 168 bits/sec, 0 packets/sec', '    300 seconds output rate 176 bits/sec, 0 packets/sec', '    input rate 168 bps, 0 pps; output rate 176 bps, 0 pps', '  RX', '    316 unicast packets  12976 multicast packets  2 broadcast packets', '    13294 input packets  2456088 bytes', '    2 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    275 unicast packets  12963 multicast packets  2 broadcast packets', '    13240 output packets  2420280 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel2121'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.118/30'}], 'name': 'port-channel2121'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel2121:\n"
+}
+ok: [dub-st2-lf2] => (item={'changed': False, 'stdout': ['port-channel2122 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0cf2.0000.1b08 (bia 0cf2.0000.0104)\n  Description: Uplink to dub-st2-sp2\n  Internet Address is 30.30.30.126/30\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/3, Eth1/4\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 344 bits/sec, 0 packets/sec\n    30 seconds output rate 344 bits/sec, 0 packets/sec\n    input rate 344 bps, 0 pps; output rate 344 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 400 bits/sec, 0 packets/sec\n    300 seconds output rate 400 bits/sec, 0 packets/sec\n    input rate 400 bps, 0 pps; output rate 400 bps, 0 pps\n  RX\n    337 unicast packets  12966 multicast packets  3 broadcast packets\n    13306 input packets  2456268 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    288 unicast packets  12974 multicast packets  2 broadcast packets\n    13264 output packets  2423564 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel2122 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0cf2.0000.1b08 (bia 0cf2.0000.0104)', '  Description: Uplink to dub-st2-sp2', '  Internet Address is 30.30.30.126/30', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/3, Eth1/4', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 344 bits/sec, 0 packets/sec', '    30 seconds output rate 344 bits/sec, 0 packets/sec', '    input rate 344 bps, 0 pps; output rate 344 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 400 bits/sec, 0 packets/sec', '    300 seconds output rate 400 bits/sec, 0 packets/sec', '    input rate 400 bps, 0 pps; output rate 400 bps, 0 pps', '  RX', '    337 unicast packets  12966 multicast packets  3 broadcast packets', '    13306 input packets  2456268 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    288 unicast packets  12974 multicast packets  2 broadcast packets', '    13264 output packets  2423564 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel2122'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.126/30'}], 'name': 'port-channel2122'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel2122:\n"
+}
+ok: [dub-st2-lf1] => (item={'changed': False, 'stdout': ['port-channel2112 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0c6f.0000.1b08 (bia 0c6f.0000.0104)\n  Description: Uplink to dub-st2-sp2\n  Internet Address is 30.30.30.122/30\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 40131/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/3, Eth1/4\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 464 bits/sec, 0 packets/sec\n    30 seconds output rate 464 bits/sec, 0 packets/sec\n    input rate 464 bps, 0 pps; output rate 464 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 176 bits/sec, 0 packets/sec\n    300 seconds output rate 168 bits/sec, 0 packets/sec\n    input rate 176 bps, 0 pps; output rate 168 bps, 0 pps\n  RX\n    342 unicast packets  12969 multicast packets  3 broadcast packets\n    13314 input packets  2453135 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    24496019563871864 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    292 unicast packets  12980 multicast packets  2 broadcast packets\n    13274 output packets  2424746 bytes\n    18446639146788655356 jumbo packets\n    1873497444998709248 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel2112 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0c6f.0000.1b08 (bia 0c6f.0000.0104)', '  Description: Uplink to dub-st2-sp2', '  Internet Address is 30.30.30.122/30', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 40131/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/3, Eth1/4', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 464 bits/sec, 0 packets/sec', '    30 seconds output rate 464 bits/sec, 0 packets/sec', '    input rate 464 bps, 0 pps; output rate 464 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 176 bits/sec, 0 packets/sec', '    300 seconds output rate 168 bits/sec, 0 packets/sec', '    input rate 176 bps, 0 pps; output rate 168 bps, 0 pps', '  RX', '    342 unicast packets  12969 multicast packets  3 broadcast packets', '    13314 input packets  2453135 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    24496019563871864 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    292 unicast packets  12980 multicast packets  2 broadcast packets', '    13274 output packets  2424746 bytes', '    18446639146788655356 jumbo packets', '    1873497444998709248 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel2112'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.122/30'}], 'name': 'port-channel2112'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel2112:\n"
+}
+ok: [dub-st3-lf1] => (item={'changed': False, 'stdout': ['port-channel3131 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0c3b.0000.1b08 (bia 0c3b.0000.0102)\n  Description: Uplink to dub-st3-sp1\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/1, Eth1/2\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 256 bits/sec, 0 packets/sec\n    30 seconds output rate 144 bits/sec, 0 packets/sec\n    input rate 256 bps, 0 pps; output rate 144 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 376 bits/sec, 0 packets/sec\n    300 seconds output rate 304 bits/sec, 0 packets/sec\n    input rate 376 bps, 0 pps; output rate 304 bps, 0 pps\n  RX\n    0 unicast packets  11369 multicast packets  1 broadcast packets\n    11370 input packets  2200688 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    0 unicast packets  8720 multicast packets  0 broadcast packets\n    8720 output packets  2046038 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel3131 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0c3b.0000.1b08 (bia 0c3b.0000.0102)', '  Description: Uplink to dub-st3-sp1', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/1, Eth1/2', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 256 bits/sec, 0 packets/sec', '    30 seconds output rate 144 bits/sec, 0 packets/sec', '    input rate 256 bps, 0 pps; output rate 144 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 376 bits/sec, 0 packets/sec', '    300 seconds output rate 304 bits/sec, 0 packets/sec', '    input rate 376 bps, 0 pps; output rate 304 bps, 0 pps', '  RX', '    0 unicast packets  11369 multicast packets  1 broadcast packets', '    11370 input packets  2200688 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    0 unicast packets  8720 multicast packets  0 broadcast packets', '    8720 output packets  2046038 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel3131'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.131/30'}], 'name': 'port-channel3131'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel3131:\n"
+}
+ok: [dub-st3-lf1] => (item={'changed': False, 'stdout': ['port-channel3231 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0c3b.0000.1b08 (bia 0c3b.0000.0104)\n  Description: Uplink to dub-st3-sp2\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/3, Eth1/4\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 144 bits/sec, 0 packets/sec\n    30 seconds output rate 112 bits/sec, 0 packets/sec\n    input rate 144 bps, 0 pps; output rate 112 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 376 bits/sec, 0 packets/sec\n    300 seconds output rate 304 bits/sec, 0 packets/sec\n    input rate 376 bps, 0 pps; output rate 304 bps, 0 pps\n  RX\n    0 unicast packets  12951 multicast packets  2 broadcast packets\n    12953 input packets  2407980 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    0 unicast packets  8700 multicast packets  0 broadcast packets\n    8700 output packets  2042778 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel3231 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0c3b.0000.1b08 (bia 0c3b.0000.0104)', '  Description: Uplink to dub-st3-sp2', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/3, Eth1/4', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 144 bits/sec, 0 packets/sec', '    30 seconds output rate 112 bits/sec, 0 packets/sec', '    input rate 144 bps, 0 pps; output rate 112 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 376 bits/sec, 0 packets/sec', '    300 seconds output rate 304 bits/sec, 0 packets/sec', '    input rate 376 bps, 0 pps; output rate 304 bps, 0 pps', '  RX', '    0 unicast packets  12951 multicast packets  2 broadcast packets', '    12953 input packets  2407980 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    0 unicast packets  8700 multicast packets  0 broadcast packets', '    8700 output packets  2042778 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel3231'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.139/30'}], 'name': 'port-channel3231'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel3231:\n"
+}
+ok: [dub-st3-lf2] => (item={'changed': False, 'stdout': ['port-channel3111 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0cd3.0000.1b08 (bia 0cd3.0000.0101)\n  Description: Uplink to dub-st3-sp1\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/1, Eth1/2\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 256 bits/sec, 0 packets/sec\n    30 seconds output rate 192 bits/sec, 0 packets/sec\n    input rate 256 bps, 0 pps; output rate 192 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 360 bits/sec, 0 packets/sec\n    300 seconds output rate 288 bits/sec, 0 packets/sec\n    input rate 360 bps, 0 pps; output rate 288 bps, 0 pps\n  RX\n    0 unicast packets  9698 multicast packets  2 broadcast packets\n    9700 input packets  1687663 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    0 unicast packets  5990 multicast packets  0 broadcast packets\n    5990 output packets  1405982 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel3111 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0cd3.0000.1b08 (bia 0cd3.0000.0101)', '  Description: Uplink to dub-st3-sp1', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/1, Eth1/2', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 256 bits/sec, 0 packets/sec', '    30 seconds output rate 192 bits/sec, 0 packets/sec', '    input rate 256 bps, 0 pps; output rate 192 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 360 bits/sec, 0 packets/sec', '    300 seconds output rate 288 bits/sec, 0 packets/sec', '    input rate 360 bps, 0 pps; output rate 288 bps, 0 pps', '  RX', '    0 unicast packets  9698 multicast packets  2 broadcast packets', '    9700 input packets  1687663 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    0 unicast packets  5990 multicast packets  0 broadcast packets', '    5990 output packets  1405982 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel3111'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.135/30'}], 'name': 'port-channel3111'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel3111:\n"
+}
+ok: [dub-st3-lf2] => (item={'changed': False, 'stdout': ['port-channel3112 is up\nadmin state is up,\n  Hardware: Port-Channel, address: 0cd3.0000.1b08 (bia 0cd3.0000.0103)\n  Description: Uplink to dub-st3-sp2\n  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec\n  reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, medium is broadcast\n  full-duplex, 1000 Mb/s\n  Input flow-control is off, output flow-control is off\n  Auto-mdix is turned off\n  Switchport monitor is off \n  EtherType is 0x8100 \n  Members in this channel: Eth1/3, Eth1/4\n  Last clearing of "show interface" counters never\n  1 interface resets\n  Load-Interval #1: 30 seconds\n    30 seconds input rate 360 bits/sec, 0 packets/sec\n    30 seconds output rate 280 bits/sec, 0 packets/sec\n    input rate 360 bps, 0 pps; output rate 280 bps, 0 pps\n  Load-Interval #2: 5 minute (300 seconds)\n    300 seconds input rate 240 bits/sec, 0 packets/sec\n    300 seconds output rate 168 bits/sec, 0 packets/sec\n    input rate 240 bps, 0 pps; output rate 168 bps, 0 pps\n  RX\n    0 unicast packets  10007 multicast packets  2 broadcast packets\n    10009 input packets  1738241 bytes\n    0 jumbo packets  0 storm suppression packets\n    0 runts  0 giants  0 CRC  0 no buffer\n    0 input error  0 short frame  0 overrun   0 underrun  0 ignored\n    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop\n    0 input with dribble  0 input discard\n    0 Rx pause\n    0 Stomped CRC\n  TX\n    0 unicast packets  5970 multicast packets  0 broadcast packets\n    5970 output packets  1402527 bytes\n    0 jumbo packets\n    0 output error  0 collision  0 deferred  0 late collision\n    0 lost carrier  0 no carrier  0 babble  0 output discard\n    0 Tx pause'], 'stdout_lines': [['port-channel3112 is up', 'admin state is up,', '  Hardware: Port-Channel, address: 0cd3.0000.1b08 (bia 0cd3.0000.0103)', '  Description: Uplink to dub-st3-sp2', '  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec', '  reliability 255/255, txload 1/255, rxload 1/255', '  Encapsulation ARPA, medium is broadcast', '  full-duplex, 1000 Mb/s', '  Input flow-control is off, output flow-control is off', '  Auto-mdix is turned off', '  Switchport monitor is off ', '  EtherType is 0x8100 ', '  Members in this channel: Eth1/3, Eth1/4', '  Last clearing of "show interface" counters never', '  1 interface resets', '  Load-Interval #1: 30 seconds', '    30 seconds input rate 360 bits/sec, 0 packets/sec', '    30 seconds output rate 280 bits/sec, 0 packets/sec', '    input rate 360 bps, 0 pps; output rate 280 bps, 0 pps', '  Load-Interval #2: 5 minute (300 seconds)', '    300 seconds input rate 240 bits/sec, 0 packets/sec', '    300 seconds output rate 168 bits/sec, 0 packets/sec', '    input rate 240 bps, 0 pps; output rate 168 bps, 0 pps', '  RX', '    0 unicast packets  10007 multicast packets  2 broadcast packets', '    10009 input packets  1738241 bytes', '    0 jumbo packets  0 storm suppression packets', '    0 runts  0 giants  0 CRC  0 no buffer', '    0 input error  0 short frame  0 overrun   0 underrun  0 ignored', '    0 watchdog  0 bad etype drop  0 bad proto drop  0 if down drop', '    0 input with dribble  0 input discard', '    0 Rx pause', '    0 Stomped CRC', '  TX', '    0 unicast packets  5970 multicast packets  0 broadcast packets', '    5970 output packets  1402527 bytes', '    0 jumbo packets', '    0 output error  0 collision  0 deferred  0 late collision', '    0 lost carrier  0 no carrier  0 babble  0 output discard', '    0 Tx pause']], 'invocation': {'module_args': {'commands': ['show interface port-channel3112'], 'match': 'all', 'retries': 9, 'interval': 1, 'wait_for': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.143/30'}], 'name': 'port-channel3112'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "port-channel3112:\n"
 }
 
-TASK [Create NetBox sites for EVPN/VXLAN lab] **********************************
-task path: /home/overlord/Desktop/nexus_evpn_lab/playbooks/pb_build_netbox_db.yml:40
-<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: overlord
-<127.0.0.1> EXEC /bin/sh -c 'echo ~overlord && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/overlord/.ansible/tmp `"&& mkdir "` echo /home/overlord/.ansible/tmp/ansible-tmp-1759103268.143802-647139-246310779053903 `" && echo ansible-tmp-1759103268.143802-647139-246310779053903="` echo /home/overlord/.ansible/tmp/ansible-tmp-1759103268.143802-647139-246310779053903 `" ) && sleep 0'
-Using module file /usr/lib/python3/dist-packages/ansible_collections/netbox/netbox/plugins/modules/netbox_site.py
-<127.0.0.1> PUT /home/overlord/.ansible/tmp/ansible-local-647108shtxnuf8/tmpglnia3av TO /home/overlord/.ansible/tmp/ansible-tmp-1759103268.143802-647139-246310779053903/AnsiballZ_netbox_site.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/overlord/.ansible/tmp/ansible-tmp-1759103268.143802-647139-246310779053903/ /home/overlord/.ansible/tmp/ansible-tmp-1759103268.143802-647139-246310779053903/AnsiballZ_netbox_site.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/overlord/.ansible/tmp/ansible-tmp-1759103268.143802-647139-246310779053903/AnsiballZ_netbox_site.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/overlord/.ansible/tmp/ansible-tmp-1759103268.143802-647139-246310779053903/ > /dev/null 2>&1 && sleep 0'
-The full traceback is:
-  File "/tmp/ansible_netbox.netbox.netbox_site_payload_d3luws9d/ansible_netbox.netbox.netbox_site_payload.zip/ansible_collections/netbox/netbox/plugins/module_utils/netbox_utils.py", line 744, in _connect_netbox_api
-    self.version = nb.version
-                   ^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/pynetbox/core/api.py", line 131, in version
-    ).get_version()
-      ^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/pynetbox/core/query.py", line 197, in get_version
-    raise RequestError(req)
-failed: [localhost] (item={'name': 'dub-st1', 'description': 'Dublin DC Site 1', 'location': 'Classified', 'slug': 'dub-st1'}) => {
-    "ansible_loop_var": "item",
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "cert": null,
-            "data": {
-                "asn": null,
-                "comments": "Multi-site EVPN/VXLAN lab environment",
-                "contact_email": null,
-                "contact_name": null,
-                "contact_phone": null,
-                "custom_fields": null,
-                "description": "Dublin DC Site 1",
-                "facility": null,
-                "latitude": null,
-                "longitude": null,
-                "name": "dub-st1",
-                "physical_address": null,
-                "region": null,
-                "shipping_address": null,
-                "site_group": null,
-                "slug": "dub-st1",
-                "status": null,
-                "tags": null,
-                "tenant": null,
-                "time_zone": null
-            },
-            "netbox_token": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",
-            "netbox_url": "https://vcfx1495.cloud.netboxapp.com",
-            "query_params": null,
-            "state": "present",
-            "validate_certs": false
-        }
-    },
-    "item": {
-        "description": "Dublin DC Site 1",
-        "location": "Classified",
-        "name": "dub-st1",
-        "slug": "dub-st1"
-    },
-    "msg": "Failed to establish connection to NetBox API"
+TASK [Check IP interface brief] ************************************************
+ok: [dub-st2-lf2]
+ok: [dub-st1-lf2]
+ok: [dub-st1-lf1]
+ok: [dub-st3-lf1]
+ok: [dub-st2-lf1]
+ok: [dub-st3-lf2]
+
+TASK [Display all IP interfaces] ***********************************************
+ok: [dub-st1-lf1] => {
+    "msg": "=== dub-st1-lf1 All IP Interfaces ===\nIP Interface Status for VRF \"default\"(1)\nInterface            IP Address      Interface Status\nLo0                  10.10.10.11     protocol-up/link-up/admin-up       \nLo1                  20.20.20.11     protocol-up/link-up/admin-up       \nPo1111               30.30.30.98     protocol-up/link-up/admin-up       \nPo1112               30.30.30.106    protocol-up/link-up/admin-up\n"
 }
-<127.0.0.1> EXEC /bin/sh -c 'echo ~overlord && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/overlord/.ansible/tmp `"&& mkdir "` echo /home/overlord/.ansible/tmp/ansible-tmp-1759103268.6892273-647139-182833720175914 `" && echo ansible-tmp-1759103268.6892273-647139-182833720175914="` echo /home/overlord/.ansible/tmp/ansible-tmp-1759103268.6892273-647139-182833720175914 `" ) && sleep 0'
-Using module file /usr/lib/python3/dist-packages/ansible_collections/netbox/netbox/plugins/modules/netbox_site.py
-<127.0.0.1> PUT /home/overlord/.ansible/tmp/ansible-local-647108shtxnuf8/tmpxj82l3np TO /home/overlord/.ansible/tmp/ansible-tmp-1759103268.6892273-647139-182833720175914/AnsiballZ_netbox_site.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/overlord/.ansible/tmp/ansible-tmp-1759103268.6892273-647139-182833720175914/ /home/overlord/.ansible/tmp/ansible-tmp-1759103268.6892273-647139-182833720175914/AnsiballZ_netbox_site.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/overlord/.ansible/tmp/ansible-tmp-1759103268.6892273-647139-182833720175914/AnsiballZ_netbox_site.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/overlord/.ansible/tmp/ansible-tmp-1759103268.6892273-647139-182833720175914/ > /dev/null 2>&1 && sleep 0'
-The full traceback is:
-  File "/tmp/ansible_netbox.netbox.netbox_site_payload_6qyiur1f/ansible_netbox.netbox.netbox_site_payload.zip/ansible_collections/netbox/netbox/plugins/module_utils/netbox_utils.py", line 744, in _connect_netbox_api
-    self.version = nb.version
-                   ^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/pynetbox/core/api.py", line 131, in version
-    ).get_version()
-      ^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/pynetbox/core/query.py", line 197, in get_version
-    raise RequestError(req)
-failed: [localhost] (item={'name': 'dub-st2', 'description': 'Dublin DC Site 2', 'location': 'Classified', 'slug': 'dub-st2'}) => {
-    "ansible_loop_var": "item",
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "cert": null,
-            "data": {
-                "asn": null,
-                "comments": "Multi-site EVPN/VXLAN lab environment",
-                "contact_email": null,
-                "contact_name": null,
-                "contact_phone": null,
-                "custom_fields": null,
-                "description": "Dublin DC Site 2",
-                "facility": null,
-                "latitude": null,
-                "longitude": null,
-                "name": "dub-st2",
-                "physical_address": null,
-                "region": null,
-                "shipping_address": null,
-                "site_group": null,
-                "slug": "dub-st2",
-                "status": null,
-                "tags": null,
-                "tenant": null,
-                "time_zone": null
-            },
-            "netbox_token": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",
-            "netbox_url": "https://vcfx1495.cloud.netboxapp.com",
-            "query_params": null,
-            "state": "present",
-            "validate_certs": false
-        }
-    },
-    "item": {
-        "description": "Dublin DC Site 2",
-        "location": "Classified",
-        "name": "dub-st2",
-        "slug": "dub-st2"
-    },
-    "msg": "Failed to establish connection to NetBox API"
+ok: [dub-st1-lf2] => {
+    "msg": "=== dub-st1-lf2 All IP Interfaces ===\nIP Interface Status for VRF \"default\"(1)\nInterface            IP Address      Interface Status\nLo0                  10.10.10.12     protocol-up/link-up/admin-up       \nLo1                  20.20.20.12     protocol-up/link-up/admin-up       \nPo1111               30.30.30.102    protocol-up/link-up/admin-up       \nPo1112               30.30.30.110    protocol-up/link-up/admin-up\n"
 }
-<127.0.0.1> EXEC /bin/sh -c 'echo ~overlord && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/overlord/.ansible/tmp `"&& mkdir "` echo /home/overlord/.ansible/tmp/ansible-tmp-1759103269.1496158-647139-160173509476929 `" && echo ansible-tmp-1759103269.1496158-647139-160173509476929="` echo /home/overlord/.ansible/tmp/ansible-tmp-1759103269.1496158-647139-160173509476929 `" ) && sleep 0'
-Using module file /usr/lib/python3/dist-packages/ansible_collections/netbox/netbox/plugins/modules/netbox_site.py
-<127.0.0.1> PUT /home/overlord/.ansible/tmp/ansible-local-647108shtxnuf8/tmp985qzrds TO /home/overlord/.ansible/tmp/ansible-tmp-1759103269.1496158-647139-160173509476929/AnsiballZ_netbox_site.py
-<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/overlord/.ansible/tmp/ansible-tmp-1759103269.1496158-647139-160173509476929/ /home/overlord/.ansible/tmp/ansible-tmp-1759103269.1496158-647139-160173509476929/AnsiballZ_netbox_site.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/overlord/.ansible/tmp/ansible-tmp-1759103269.1496158-647139-160173509476929/AnsiballZ_netbox_site.py && sleep 0'
-<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/overlord/.ansible/tmp/ansible-tmp-1759103269.1496158-647139-160173509476929/ > /dev/null 2>&1 && sleep 0'
-The full traceback is:
-  File "/tmp/ansible_netbox.netbox.netbox_site_payload_orw4hsbt/ansible_netbox.netbox.netbox_site_payload.zip/ansible_collections/netbox/netbox/plugins/module_utils/netbox_utils.py", line 744, in _connect_netbox_api
-    self.version = nb.version
-                   ^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/pynetbox/core/api.py", line 131, in version
-    ).get_version()
-      ^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/pynetbox/core/query.py", line 197, in get_version
-    raise RequestError(req)
-failed: [localhost] (item={'name': 'dub-st3', 'description': 'Dublin DC Site 3', 'location': 'Classified', 'slug': 'dub-st3'}) => {
-    "ansible_loop_var": "item",
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "cert": null,
-            "data": {
-                "asn": null,
-                "comments": "Multi-site EVPN/VXLAN lab environment",
-                "contact_email": null,
-                "contact_name": null,
-                "contact_phone": null,
-                "custom_fields": null,
-                "description": "Dublin DC Site 3",
-                "facility": null,
-                "latitude": null,
-                "longitude": null,
-                "name": "dub-st3",
-                "physical_address": null,
-                "region": null,
-                "shipping_address": null,
-                "site_group": null,
-                "slug": "dub-st3",
-                "status": null,
-                "tags": null,
-                "tenant": null,
-                "time_zone": null
-            },
-            "netbox_token": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",
-            "netbox_url": "https://vcfx1495.cloud.netboxapp.com",
-            "query_params": null,
-            "state": "present",
-            "validate_certs": false
-        }
-    },
-    "item": {
-        "description": "Dublin DC Site 3",
-        "location": "Classified",
-        "name": "dub-st3",
-        "slug": "dub-st3"
-    },
-    "msg": "Failed to establish connection to NetBox API"
+ok: [dub-st2-lf2] => {
+    "msg": "=== dub-st2-lf2 All IP Interfaces ===\nIP Interface Status for VRF \"default\"(1)\nInterface            IP Address      Interface Status\nLo0                  10.10.10.14     protocol-up/link-up/admin-up       \nLo1                  20.20.20.14     protocol-up/link-up/admin-up       \nPo2121               30.30.30.118    protocol-up/link-up/admin-up       \nPo2122               30.30.30.126    protocol-up/link-up/admin-up\n"
+}
+ok: [dub-st2-lf1] => {
+    "msg": "=== dub-st2-lf1 All IP Interfaces ===\nIP Interface Status for VRF \"default\"(1)\nInterface            IP Address      Interface Status\nLo0                  10.10.10.13     protocol-up/link-up/admin-up       \nLo1                  20.20.20.13     protocol-up/link-up/admin-up       \nPo2111               30.30.30.114    protocol-up/link-up/admin-up       \nPo2112               30.30.30.122    protocol-up/link-up/admin-up\n"
+}
+ok: [dub-st3-lf1] => {
+    "msg": "=== dub-st3-lf1 All IP Interfaces ===\nIP Interface Status for VRF \"default\"(1)\nInterface            IP Address      Interface Status\nLo0                  10.10.10.15     protocol-up/link-up/admin-up       \nLo1                  20.20.20.15     protocol-up/link-up/admin-up\n"
+}
+ok: [dub-st3-lf2] => {
+    "msg": "=== dub-st3-lf2 All IP Interfaces ===\nIP Interface Status for VRF \"default\"(1)\nInterface            IP Address      Interface Status\nLo0                  10.10.10.16     protocol-up/link-up/admin-up       \nLo1                  20.20.20.16     protocol-up/link-up/admin-up\n"
+}
+
+TASK [Check what l3_interfaces variable contains] ******************************
+ok: [dub-st1-lf1] => {
+    "msg": "=== dub-st1-lf1 l3_interfaces variable ===\n[\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.98/30\"\n            }\n        ],\n        \"name\": \"port-channel1111\"\n    },\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.106/30\"\n            }\n        ],\n        \"name\": \"port-channel1112\"\n    }\n]\n"
+}
+ok: [dub-st2-lf1] => {
+    "msg": "=== dub-st2-lf1 l3_interfaces variable ===\n[\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.114/30\"\n            }\n        ],\n        \"name\": \"port-channel2111\"\n    },\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.122/30\"\n            }\n        ],\n        \"name\": \"port-channel2112\"\n    }\n]\n"
+}
+ok: [dub-st1-lf2] => {
+    "msg": "=== dub-st1-lf2 l3_interfaces variable ===\n[\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.102/30\"\n            }\n        ],\n        \"name\": \"port-channel1111\"\n    },\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.110/30\"\n            }\n        ],\n        \"name\": \"port-channel1112\"\n    }\n]\n"
+}
+ok: [dub-st2-lf2] => {
+    "msg": "=== dub-st2-lf2 l3_interfaces variable ===\n[\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.118/30\"\n            }\n        ],\n        \"name\": \"port-channel2121\"\n    },\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.126/30\"\n            }\n        ],\n        \"name\": \"port-channel2122\"\n    }\n]\n"
+}
+ok: [dub-st3-lf1] => {
+    "msg": "=== dub-st3-lf1 l3_interfaces variable ===\n[\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.131/30\"\n            }\n        ],\n        \"name\": \"port-channel3131\"\n    },\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.139/30\"\n            }\n        ],\n        \"name\": \"port-channel3231\"\n    }\n]\n"
+}
+ok: [dub-st3-lf2] => {
+    "msg": "=== dub-st3-lf2 l3_interfaces variable ===\n[\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.135/30\"\n            }\n        ],\n        \"name\": \"port-channel3111\"\n    },\n    {\n        \"ipv4\": [\n            {\n                \"address\": \"30.30.30.143/30\"\n            }\n        ],\n        \"name\": \"port-channel3112\"\n    }\n]\n"
 }
 
 PLAY RECAP *********************************************************************
-localhost                  : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+dub-st1-lf1                : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-st1-lf2                : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-st2-lf1                : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-st2-lf2                : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-st3-lf1                : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-st3-lf2                : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 

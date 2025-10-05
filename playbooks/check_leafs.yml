@@ -1,6 +1,6 @@
 ---
 - name: Check Current State of ST3 Leaf Port-Channels
-  hosts: site3_leafs
+  hosts: leafs
   gather_facts: false
   
   tasks:
