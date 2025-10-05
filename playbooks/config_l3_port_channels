@@ -27,8 +27,8 @@
         lines:
           - "no switchport"
         parents: "interface {{ item.name }}"
-      loop: "{{ l3_interfaces }}"
-      when: l3_interfaces is defined
+      loop: "{{ lag_interfaces }}"
+      when: lag_interfaces is defined
 
     - name: Configure interface properties (description, MTU, admin state)
       cisco.nxos.nxos_interfaces:
