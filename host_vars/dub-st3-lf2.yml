@@ -7,28 +7,28 @@ interfaces:
 -   description: Uplink to dub-st3-sp1
     enabled: true
     mtu: 9216
-    name: port-channel1111
+    name: port-channel3111
 -   description: Uplink to dub-st3-sp2
     enabled: true
     mtu: 9216
-    name: port-channel1112
+    name: port-channel3112
 l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.135/30
-    name: port-channel1111
+    name: port-channel3111
 -   ipv4:
     -   address: 30.30.30.143/30
-    name: port-channel1112
+    name: port-channel3112
 lag_interfaces:
 -   members:
     -   member: Ethernet1/1
         mode: active
     -   member: Ethernet1/2
         mode: active
-    name: port-channel1111
+    name: port-channel3111
 -   members:
     -   member: Ethernet1/3
         mode: active
     -   member: Ethernet1/4
         mode: active
-    name: port-channel1112
+    name: port-channel3112
