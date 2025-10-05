@@ -1,83 +1,86 @@
-lag_interfaces:
-  - name: port-channel111
-    members:
-      - member: Ethernet1/1
-        mode: active
-      - member: Ethernet1/2
-        mode: active
-  - name: port-channel211
-    members:
-      - member: Ethernet1/3
-        mode: active
-      - member: Ethernet1/4
-        mode: active
-  - name: port-channel311
-    members:
-      - member: Ethernet1/5
-        mode: active
-      - member: Ethernet1/6
-        mode: active
-  - name: port-channel411
-    members:
-      - member: Ethernet1/7
-        mode: active
-      - member: Ethernet1/8
-        mode: active
-  - name: port-channel2221
-    members:
-      - member: Ethernet1/9
-        mode: active
-      - member: Ethernet1/10
-        mode: active
-  - name: port-channel2222
-    members:
-      - member: Ethernet1/11
-        mode: active
-      - member: Ethernet1/12
-        mode: active
-
-l3_interfaces:
-  - name: port-channel111
-    ipv4:
-      - address: 30.30.30.14/30
-  - name: port-channel211
-    ipv4:
-      - address: 30.30.30.38/30
-  - name: port-channel311
-    ipv4:
-      - address: 30.30.30.62/30
-  - name: port-channel411
-    ipv4:
-      - address: 30.30.30.86/30
-  - name: port-channel2221
-    ipv4:
-      - address: 30.30.30.121/30
-  - name: port-channel2222
-    ipv4:
-      - address: 30.30.30.125/30
-
+device_info:
+    dev_model: Nexus9000 C9500v Chassis ("Supervisor Module")
+    dev_serial: 9ZLS3120A5W
+    dev_vendor: Cisco
+    os_version: 10.5(1)
 interfaces:
-  - name: port-channel111
-    description: "Uplink to dub-ssp1"
-    mtu: 9216
+-   description: Uplink to dub-ssp1
     enabled: true
-  - name: port-channel211
-    description: "Uplink to dub-ssp2"
     mtu: 9216
+    name: port-channel111
+-   description: Uplink to dub-ssp2
     enabled: true
-  - name: port-channel311
-    description: "Uplink to dub-ssp3"
     mtu: 9216
+    name: port-channel211
+-   description: Uplink to dub-ssp3
     enabled: true
-  - name: port-channel411
-    description: "Uplink to dub-ssp4"
     mtu: 9216
+    name: port-channel311
+-   description: Uplink to dub-ssp4
     enabled: true
-  - name: port-channel2221
-    description: "Downlink to dub-st2-lf1"
     mtu: 9216
+    name: port-channel411
+-   description: Downlink to dub-st2-lf1
     enabled: true
-  - name: port-channel2222
-    description: "Downlink to dub-st2-lf2"
     mtu: 9216
+    name: port-channel2221
+-   description: Downlink to dub-st2-lf2
     enabled: true
+    mtu: 9216
+    name: port-channel2222
+l3_interfaces:
+-   ipv4:
+    -   address: 30.30.30.14/30
+    name: port-channel111
+-   ipv4:
+    -   address: 30.30.30.38/30
+    name: port-channel211
+-   ipv4:
+    -   address: 30.30.30.62/30
+    name: port-channel311
+-   ipv4:
+    -   address: 30.30.30.86/30
+    name: port-channel411
+-   ipv4:
+    -   address: 30.30.30.121/30
+    name: port-channel2221
+-   ipv4:
+    -   address: 30.30.30.125/30
+    name: port-channel2222
+lag_interfaces:
+-   members:
+    -   member: Ethernet1/1
+        mode: active
+    -   member: Ethernet1/2
+        mode: active
+    name: port-channel111
+-   members:
+    -   member: Ethernet1/3
+        mode: active
+    -   member: Ethernet1/4
+        mode: active
+    name: port-channel211
+-   members:
+    -   member: Ethernet1/5
+        mode: active
+    -   member: Ethernet1/6
+        mode: active
+    name: port-channel311
+-   members:
+    -   member: Ethernet1/7
+        mode: active
+    -   member: Ethernet1/8
+        mode: active
+    name: port-channel411
+-   members:
+    -   member: Ethernet1/9
+        mode: active
+    -   member: Ethernet1/10
+        mode: active
+    name: port-channel2221
+-   members:
+    -   member: Ethernet1/11
+        mode: active
+    -   member: Ethernet1/12
+        mode: active
+    name: port-channel2222

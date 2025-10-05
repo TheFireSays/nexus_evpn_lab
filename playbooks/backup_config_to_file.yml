@@ -1,6 +1,6 @@
 ---
 - name: Save nexus configuration to local directory
-  hosts: data_switches
+  hosts: all
   gather_facts: no
 
   vars:
