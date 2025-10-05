@@ -25,10 +25,10 @@ lag_interfaces:
         mode: active
     -   member: Ethernet1/2
         mode: active
-    name: port-channel3111
+    name: port-channel3132
 -   members:
     -   member: Ethernet1/3
         mode: active
     -   member: Ethernet1/4
         mode: active
-    name: port-channel3112
+    name: port-channel3232

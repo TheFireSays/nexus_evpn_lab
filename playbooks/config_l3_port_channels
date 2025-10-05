@@ -6,16 +6,6 @@
     template: "{{ playbook_dir }}/../templates/data_switches.yml"
   
   tasks:
-#    - name: Enable required features
-#      cisco.nxos.nxos_feature:
-#        feature: "{{ item }}"
-#        state: enabled
-#      loop: "{{ enabled_features }}"
-
-#    - name: Enable special features
-#      cisco.nxos.nxos_config:
-#        lines: "{{ special_features }}"
-
     - name: Create port-channel interfaces
       cisco.nxos.nxos_config:
         lines:
@@ -29,6 +19,17 @@
         parents: "interface {{ item.name }}"
       loop: "{{ lag_interfaces }}"
       when: lag_interfaces is defined
+
+    - name: Set MTU on port-channels explicitly
+      cisco.nxos.nxos_config:
+        lines:
+          - "mtu {{ item.mtu }}"
+        parents: "interface {{ item.name }}"
+      loop: "{{ interfaces }}"
+      when: 
+        - interfaces is defined
+        - "'port-channel' in item.name"
+        - item.mtu is defined
 
     - name: Configure interface properties (description, MTU, admin state)
       cisco.nxos.nxos_interfaces:
