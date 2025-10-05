@@ -20,6 +20,7 @@
       loop: "{{ l3_interfaces }}"
       when: l3_interfaces is defined
       register: config_result
+      tags: l3
 
     - name: Add descriptions and MTU to port-channels
       cisco.nxos.nxos_config:
