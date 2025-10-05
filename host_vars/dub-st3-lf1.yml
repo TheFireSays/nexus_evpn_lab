@@ -14,10 +14,10 @@ interfaces:
     name: port-channel3231
 l3_interfaces:
 -   ipv4:
-    -   address: 30.30.30.131/30
+    -   address: 30.30.30.129/30
     name: port-channel3131
 -   ipv4:
-    -   address: 30.30.30.139/30
+    -   address: 30.30.30.137/30
     name: port-channel3231
 lag_interfaces:
 -   members:

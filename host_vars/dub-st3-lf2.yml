@@ -14,10 +14,10 @@ interfaces:
     name: port-channel3232
 l3_interfaces:
 -   ipv4:
-    -   address: 30.30.30.135/30
+    -   address: 30.30.30.133/30
     name: port-channel3132
 -   ipv4:
-    -   address: 30.30.30.143/30
+    -   address: 30.30.30.141/30
     name: port-channel3232
 lag_interfaces:
 -   members:
