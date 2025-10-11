@@ -12,6 +12,10 @@
     - name: Parse 'show neighbors' output
       set_fact:
         parsed_neighbors: "{{ neighbors.stdout[0] | parse_cli_textfsm('show_ip_osppf_neighbors.textfsm')}}"
+
+    - name: All full adjacencies
+      debug:
+        msg: "++ {{ ansible_host }} has all FULL OSPF adjacencies ++"
     
     - name: Check for incomplete adjacencies
       debug:
