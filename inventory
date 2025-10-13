@@ -24,6 +24,7 @@ dub-st3-lf2 ansible_host=1.1.1.16
 dub-ssp-mgmt ansible_host=1.1.1.17
 dub-sp-mgmt ansible_host=1.1.1.18
 dub-lf-mgmt ansible_host=1.1.1.19
+dub-mgmt-agg ansible_host=1.1.1.20
 
 [data_switches:children]
 superspines
