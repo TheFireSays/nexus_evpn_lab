@@ -1,1014 +1,619 @@
-ansible-playbook [core 2.16.3]
-  config file = /home/osboxes/Desktop/nexus_evpn_lab/ansible.cfg
-  configured module search path = ['/home/osboxes/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/lib/python3/dist-packages/ansible
-  ansible collection location = /home/osboxes/.ansible/collections:/usr/share/ansible/collections
-  executable location = /usr/bin/ansible-playbook
-  python version = 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] (/usr/bin/python3)
-  jinja version = 3.1.2
-  libyaml = True
-Using /home/osboxes/Desktop/nexus_evpn_lab/ansible.cfg as config file
-Parsed /home/osboxes/Desktop/nexus_evpn_lab/inventory inventory source with ini plugin
-Skipping callback 'default', as we already have a stdout callback.
-Skipping callback 'minimal', as we already have a stdout callback.
-Skipping callback 'oneline', as we already have a stdout callback.
 
-PLAYBOOK: fix_portchannel_ips.yml **********************************************
-1 plays in playbooks/fix_portchannel_ips.yml
+PLAY [Verify OSPF neighbors] ***************************************************
 
-PLAY [Fix Port-Channel IP Addresses on Site 3 Leafs] ***************************
+TASK [Show OSPF neighbors] *****************************************************
+ok: [dub-ssp1]
+ok: [dub-st1-sp1]
+ok: [dub-ssp3]
+ok: [dub-ssp4]
+ok: [dub-ssp2]
+ok: [dub-st3-sp2]
+ok: [dub-st2-sp2]
+ok: [dub-st2-sp1]
+ok: [dub-st3-sp1]
+ok: [dub-st1-sp2]
+ok: [dub-st2-lf2]
+ok: [dub-st1-lf1]
+ok: [dub-st1-lf2]
+ok: [dub-st2-lf1]
+ok: [dub-st3-lf1]
+ok: [dub-st3-lf2]
 
-TASK [Show what we're about to configure] **************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:7
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf1] => {
-    "msg": "Configuring dub-st3-lf1:\n- port-channel3131: 30.30.30.131/30\n- port-channel3231: 30.30.30.139/30\n"
-}
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf2] => {
-    "msg": "Configuring dub-st3-lf2:\n- port-channel3132: 30.30.30.135/30\n- port-channel3232: 30.30.30.143/30\n"
-}
+TASK [Parse 'show neighbors' output] *******************************************
+ok: [dub-ssp4]
+ok: [dub-ssp1]
+ok: [dub-ssp3]
+ok: [dub-ssp2]
+ok: [dub-st1-sp1]
+ok: [dub-st1-sp2]
+ok: [dub-st3-sp1]
+ok: [dub-st2-sp1]
+ok: [dub-st2-sp2]
+ok: [dub-st3-sp2]
+ok: [dub-st1-lf1]
+ok: [dub-st1-lf2]
+ok: [dub-st2-lf1]
+ok: [dub-st2-lf2]
+ok: [dub-st3-lf1]
+ok: [dub-st3-lf2]
 
-TASK [CRITICAL - Ensure port-channels are Layer 3 (no switchport)] *************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:15
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-changed: [dub-st3-lf1] => (item={'ipv4': [{'address': '30.30.30.131/30'}], 'name': 'port-channel3131'}) => {
-    "ansible_loop_var": "item",
-    "changed": true,
-    "commands": [
-        "interface port-channel3131",
-        "no switchport"
-    ],
-    "invocation": {
-        "module_args": {
-            "after": null,
-            "backup": false,
-            "backup_options": null,
-            "before": null,
-            "defaults": false,
-            "diff_against": null,
-            "diff_ignore_lines": null,
-            "intended_config": null,
-            "lines": [
-                "no switchport"
-            ],
-            "match": "line",
-            "parents": [
-                "interface port-channel3131"
-            ],
-            "replace": "line",
-            "replace_src": null,
-            "running_config": null,
-            "save_when": "modified",
-            "src": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.131/30"
-            }
-        ],
-        "name": "port-channel3131"
-    },
-    "updates": [
-        "interface port-channel3131",
-        "no switchport"
-    ],
-    "warnings": [
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-    ]
-}
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-changed: [dub-st3-lf1] => (item={'ipv4': [{'address': '30.30.30.139/30'}], 'name': 'port-channel3231'}) => {
-    "ansible_loop_var": "item",
-    "changed": true,
-    "commands": [
-        "interface port-channel3231",
-        "no switchport"
-    ],
-    "invocation": {
-        "module_args": {
-            "after": null,
-            "backup": false,
-            "backup_options": null,
-            "before": null,
-            "defaults": false,
-            "diff_against": null,
-            "diff_ignore_lines": null,
-            "intended_config": null,
-            "lines": [
-                "no switchport"
-            ],
-            "match": "line",
-            "parents": [
-                "interface port-channel3231"
-            ],
-            "replace": "line",
-            "replace_src": null,
-            "running_config": null,
-            "save_when": "modified",
-            "src": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.139/30"
-            }
-        ],
-        "name": "port-channel3231"
-    },
-    "updates": [
-        "interface port-channel3231",
-        "no switchport"
-    ],
-    "warnings": [
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device",
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-    ]
-}
-changed: [dub-st3-lf2] => (item={'ipv4': [{'address': '30.30.30.135/30'}], 'name': 'port-channel3132'}) => {
-    "ansible_loop_var": "item",
-    "changed": true,
-    "commands": [
-        "interface port-channel3132",
-        "no switchport"
-    ],
-    "invocation": {
-        "module_args": {
-            "after": null,
-            "backup": false,
-            "backup_options": null,
-            "before": null,
-            "defaults": false,
-            "diff_against": null,
-            "diff_ignore_lines": null,
-            "intended_config": null,
-            "lines": [
-                "no switchport"
-            ],
-            "match": "line",
-            "parents": [
-                "interface port-channel3132"
-            ],
-            "replace": "line",
-            "replace_src": null,
-            "running_config": null,
-            "save_when": "modified",
-            "src": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.135/30"
-            }
-        ],
-        "name": "port-channel3132"
-    },
-    "updates": [
-        "interface port-channel3132",
-        "no switchport"
-    ],
-    "warnings": [
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-    ]
-}
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-changed: [dub-st3-lf2] => (item={'ipv4': [{'address': '30.30.30.143/30'}], 'name': 'port-channel3232'}) => {
-    "ansible_loop_var": "item",
-    "changed": true,
-    "commands": [
-        "interface port-channel3232",
-        "no switchport"
-    ],
-    "invocation": {
-        "module_args": {
-            "after": null,
-            "backup": false,
-            "backup_options": null,
-            "before": null,
-            "defaults": false,
-            "diff_against": null,
-            "diff_ignore_lines": null,
-            "intended_config": null,
-            "lines": [
-                "no switchport"
-            ],
-            "match": "line",
-            "parents": [
-                "interface port-channel3232"
-            ],
-            "replace": "line",
-            "replace_src": null,
-            "running_config": null,
-            "save_when": "modified",
-            "src": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.143/30"
-            }
-        ],
-        "name": "port-channel3232"
-    },
-    "updates": [
-        "interface port-channel3232",
-        "no switchport"
-    ],
-    "warnings": [
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device",
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-    ]
-}
+TASK [Set parsed neighbors fact] ***********************************************
+ok: [dub-ssp1]
+ok: [dub-ssp2]
+ok: [dub-ssp3]
+ok: [dub-ssp4]
+ok: [dub-st1-sp1]
+ok: [dub-st1-sp2]
+ok: [dub-st2-sp2]
+ok: [dub-st2-sp1]
+ok: [dub-st3-sp2]
+ok: [dub-st3-sp1]
+ok: [dub-st1-lf1]
+ok: [dub-st1-lf2]
+ok: [dub-st2-lf2]
+ok: [dub-st2-lf1]
+ok: [dub-st3-lf1]
+ok: [dub-st3-lf2]
 
-TASK [Show no switchport results] **********************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:25
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf1] => {
-    "no_switchport_result": {
-        "changed": true,
-        "msg": "All items completed",
-        "results": [
-            {
-                "ansible_loop_var": "item",
-                "changed": true,
-                "commands": [
-                    "interface port-channel3131",
-                    "no switchport"
-                ],
-                "failed": false,
-                "invocation": {
-                    "module_args": {
-                        "after": null,
-                        "backup": false,
-                        "backup_options": null,
-                        "before": null,
-                        "defaults": false,
-                        "diff_against": null,
-                        "diff_ignore_lines": null,
-                        "intended_config": null,
-                        "lines": [
-                            "no switchport"
-                        ],
-                        "match": "line",
-                        "parents": [
-                            "interface port-channel3131"
-                        ],
-                        "replace": "line",
-                        "replace_src": null,
-                        "running_config": null,
-                        "save_when": "modified",
-                        "src": null
-                    }
-                },
-                "item": {
-                    "ipv4": [
-                        {
-                            "address": "30.30.30.131/30"
-                        }
-                    ],
-                    "name": "port-channel3131"
-                },
-                "updates": [
-                    "interface port-channel3131",
-                    "no switchport"
-                ]
-            },
-            {
-                "ansible_loop_var": "item",
-                "changed": true,
-                "commands": [
-                    "interface port-channel3231",
-                    "no switchport"
-                ],
-                "failed": false,
-                "invocation": {
-                    "module_args": {
-                        "after": null,
-                        "backup": false,
-                        "backup_options": null,
-                        "before": null,
-                        "defaults": false,
-                        "diff_against": null,
-                        "diff_ignore_lines": null,
-                        "intended_config": null,
-                        "lines": [
-                            "no switchport"
-                        ],
-                        "match": "line",
-                        "parents": [
-                            "interface port-channel3231"
-                        ],
-                        "replace": "line",
-                        "replace_src": null,
-                        "running_config": null,
-                        "save_when": "modified",
-                        "src": null
-                    }
-                },
-                "item": {
-                    "ipv4": [
-                        {
-                            "address": "30.30.30.139/30"
-                        }
-                    ],
-                    "name": "port-channel3231"
-                },
-                "updates": [
-                    "interface port-channel3231",
-                    "no switchport"
-                ]
-            }
-        ],
-        "skipped": false,
-        "warnings": [
-            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device",
-            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device",
-            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-        ]
-    }
-}
-ok: [dub-st3-lf2] => {
-    "no_switchport_result": {
-        "changed": true,
-        "msg": "All items completed",
-        "results": [
-            {
-                "ansible_loop_var": "item",
-                "changed": true,
-                "commands": [
-                    "interface port-channel3132",
-                    "no switchport"
-                ],
-                "failed": false,
-                "invocation": {
-                    "module_args": {
-                        "after": null,
-                        "backup": false,
-                        "backup_options": null,
-                        "before": null,
-                        "defaults": false,
-                        "diff_against": null,
-                        "diff_ignore_lines": null,
-                        "intended_config": null,
-                        "lines": [
-                            "no switchport"
-                        ],
-                        "match": "line",
-                        "parents": [
-                            "interface port-channel3132"
-                        ],
-                        "replace": "line",
-                        "replace_src": null,
-                        "running_config": null,
-                        "save_when": "modified",
-                        "src": null
-                    }
-                },
-                "item": {
-                    "ipv4": [
-                        {
-                            "address": "30.30.30.135/30"
-                        }
-                    ],
-                    "name": "port-channel3132"
-                },
-                "updates": [
-                    "interface port-channel3132",
-                    "no switchport"
-                ]
-            },
-            {
-                "ansible_loop_var": "item",
-                "changed": true,
-                "commands": [
-                    "interface port-channel3232",
-                    "no switchport"
-                ],
-                "failed": false,
-                "invocation": {
-                    "module_args": {
-                        "after": null,
-                        "backup": false,
-                        "backup_options": null,
-                        "before": null,
-                        "defaults": false,
-                        "diff_against": null,
-                        "diff_ignore_lines": null,
-                        "intended_config": null,
-                        "lines": [
-                            "no switchport"
-                        ],
-                        "match": "line",
-                        "parents": [
-                            "interface port-channel3232"
-                        ],
-                        "replace": "line",
-                        "replace_src": null,
-                        "running_config": null,
-                        "save_when": "modified",
-                        "src": null
-                    }
-                },
-                "item": {
-                    "ipv4": [
-                        {
-                            "address": "30.30.30.143/30"
-                        }
-                    ],
-                    "name": "port-channel3232"
-                },
-                "updates": [
-                    "interface port-channel3232",
-                    "no switchport"
-                ]
-            }
-        ],
-        "skipped": false,
-        "warnings": [
-            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device",
-            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device",
-            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-        ]
-    }
-}
+TASK [Check for incomplete adjacencies] ****************************************
+ok: [dub-ssp1]
+ok: [dub-ssp2]
+ok: [dub-ssp3]
+ok: [dub-ssp4]
+ok: [dub-st1-sp1]
+ok: [dub-st1-sp2]
+ok: [dub-st2-sp1]
+ok: [dub-st2-sp2]
+ok: [dub-st3-sp1]
+ok: [dub-st3-sp2]
+ok: [dub-st1-lf1]
+ok: [dub-st1-lf2]
+ok: [dub-st2-lf2]
+ok: [dub-st2-lf1]
+ok: [dub-st3-lf1]
+ok: [dub-st3-lf2]
 
-TASK [Apply IP addresses to port-channels] *************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:29
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-changed: [dub-st3-lf1] => (item={'ipv4': [{'address': '30.30.30.131/30'}], 'name': 'port-channel3131'}) => {
-    "ansible_loop_var": "item",
-    "changed": true,
-    "commands": [
-        "interface port-channel3131",
-        "ip address 30.30.30.131/30",
-        "no shutdown"
-    ],
-    "invocation": {
-        "module_args": {
-            "after": null,
-            "backup": false,
-            "backup_options": null,
-            "before": null,
-            "defaults": false,
-            "diff_against": null,
-            "diff_ignore_lines": null,
-            "intended_config": null,
-            "lines": [
-                "ip address 30.30.30.131/30",
-                "no shutdown"
-            ],
-            "match": "line",
-            "parents": [
-                "interface port-channel3131"
-            ],
-            "replace": "line",
-            "replace_src": null,
-            "running_config": null,
-            "save_when": "modified",
-            "src": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.131/30"
-            }
-        ],
-        "name": "port-channel3131"
-    },
-    "updates": [
-        "interface port-channel3131",
-        "ip address 30.30.30.131/30",
-        "no shutdown"
-    ],
-    "warnings": [
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-    ]
+TASK [All full adjacencies] ****************************************************
+skipping: [dub-ssp1]
+skipping: [dub-ssp3]
+skipping: [dub-ssp4]
+ok: [dub-ssp2] => {
+    "msg": "++ dub-ssp2 has all FULL OSPF adjacencies ++"
 }
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-changed: [dub-st3-lf2] => (item={'ipv4': [{'address': '30.30.30.135/30'}], 'name': 'port-channel3132'}) => {
-    "ansible_loop_var": "item",
-    "changed": true,
-    "commands": [
-        "interface port-channel3132",
-        "ip address 30.30.30.135/30",
-        "no shutdown"
-    ],
-    "invocation": {
-        "module_args": {
-            "after": null,
-            "backup": false,
-            "backup_options": null,
-            "before": null,
-            "defaults": false,
-            "diff_against": null,
-            "diff_ignore_lines": null,
-            "intended_config": null,
-            "lines": [
-                "ip address 30.30.30.135/30",
-                "no shutdown"
-            ],
-            "match": "line",
-            "parents": [
-                "interface port-channel3132"
-            ],
-            "replace": "line",
-            "replace_src": null,
-            "running_config": null,
-            "save_when": "modified",
-            "src": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.135/30"
-            }
-        ],
-        "name": "port-channel3132"
-    },
-    "updates": [
-        "interface port-channel3132",
-        "ip address 30.30.30.135/30",
-        "no shutdown"
-    ],
-    "warnings": [
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-    ]
+ok: [dub-st1-sp2] => {
+    "msg": "++ dub-st1-sp2 has all FULL OSPF adjacencies ++"
 }
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-changed: [dub-st3-lf1] => (item={'ipv4': [{'address': '30.30.30.139/30'}], 'name': 'port-channel3231'}) => {
-    "ansible_loop_var": "item",
-    "changed": true,
-    "commands": [
-        "interface port-channel3231",
-        "ip address 30.30.30.139/30",
-        "no shutdown"
-    ],
-    "invocation": {
-        "module_args": {
-            "after": null,
-            "backup": false,
-            "backup_options": null,
-            "before": null,
-            "defaults": false,
-            "diff_against": null,
-            "diff_ignore_lines": null,
-            "intended_config": null,
-            "lines": [
-                "ip address 30.30.30.139/30",
-                "no shutdown"
-            ],
-            "match": "line",
-            "parents": [
-                "interface port-channel3231"
-            ],
-            "replace": "line",
-            "replace_src": null,
-            "running_config": null,
-            "save_when": "modified",
-            "src": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.139/30"
-            }
-        ],
-        "name": "port-channel3231"
-    },
-    "updates": [
-        "interface port-channel3231",
-        "ip address 30.30.30.139/30",
-        "no shutdown"
-    ],
-    "warnings": [
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device",
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-    ]
+ok: [dub-st2-sp1] => {
+    "msg": "++ dub-st2-sp1 has all FULL OSPF adjacencies ++"
 }
-changed: [dub-st3-lf2] => (item={'ipv4': [{'address': '30.30.30.143/30'}], 'name': 'port-channel3232'}) => {
-    "ansible_loop_var": "item",
-    "changed": true,
-    "commands": [
-        "interface port-channel3232",
-        "ip address 30.30.30.143/30",
-        "no shutdown"
-    ],
-    "invocation": {
-        "module_args": {
-            "after": null,
-            "backup": false,
-            "backup_options": null,
-            "before": null,
-            "defaults": false,
-            "diff_against": null,
-            "diff_ignore_lines": null,
-            "intended_config": null,
-            "lines": [
-                "ip address 30.30.30.143/30",
-                "no shutdown"
-            ],
-            "match": "line",
-            "parents": [
-                "interface port-channel3232"
-            ],
-            "replace": "line",
-            "replace_src": null,
-            "running_config": null,
-            "save_when": "modified",
-            "src": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.143/30"
-            }
-        ],
-        "name": "port-channel3232"
-    },
-    "updates": [
-        "interface port-channel3232",
-        "ip address 30.30.30.143/30",
-        "no shutdown"
-    ],
-    "warnings": [
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device",
-        "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device"
-    ]
+ok: [dub-st1-sp1] => {
+    "msg": "++ dub-st1-sp1 has all FULL OSPF adjacencies ++"
 }
+skipping: [dub-st3-sp1]
+ok: [dub-st2-sp2] => {
+    "msg": "++ dub-st2-sp2 has all FULL OSPF adjacencies ++"
+}
+skipping: [dub-st3-sp2]
+skipping: [dub-st3-lf1]
+ok: [dub-st1-lf1] => {
+    "msg": "++ dub-st1-lf1 has all FULL OSPF adjacencies ++"
+}
+ok: [dub-st1-lf2] => {
+    "msg": "++ dub-st1-lf2 has all FULL OSPF adjacencies ++"
+}
+ok: [dub-st2-lf1] => {
+    "msg": "++ dub-st2-lf1 has all FULL OSPF adjacencies ++"
+}
+ok: [dub-st2-lf2] => {
+    "msg": "++ dub-st2-lf2 has all FULL OSPF adjacencies ++"
+}
+skipping: [dub-st3-lf2]
 
-TASK [Show what changed] *******************************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:40
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf2] => {
-    "msg": "IP config result: {'results': [{'changed': True, 'commands': ['interface port-channel3132', 'ip address 30.30.30.135/30', 'no shutdown'], 'updates': ['interface port-channel3132', 'ip address 30.30.30.135/30', 'no shutdown'], 'invocation': {'module_args': {'lines': ['ip address 30.30.30.135/30', 'no shutdown'], 'parents': ['interface port-channel3132'], 'save_when': 'modified', 'match': 'line', 'replace': 'line', 'defaults': False, 'backup': False, 'src': None, 'replace_src': None, 'before': None, 'after': None, 'running_config': None, 'intended_config': None, 'backup_options': None, 'diff_against': None, 'diff_ignore_lines': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.135/30'}], 'name': 'port-channel3132'}, 'ansible_loop_var': 'item'}, {'changed': True, 'commands': ['interface port-channel3232', 'ip address 30.30.30.143/30', 'no shutdown'], 'updates': ['interface port-channel3232', 'ip address 30.30.30.143/30', 'no shutdown'], 'invocation': {'module_args': {'lines': ['ip address 30.30.30.143/30', 'no shutdown'], 'parents': ['interface port-channel3232'], 'save_when': 'modified', 'match': 'line', 'replace': 'line', 'defaults': False, 'backup': False, 'src': None, 'replace_src': None, 'before': None, 'after': None, 'running_config': None, 'intended_config': None, 'backup_options': None, 'diff_against': None, 'diff_ignore_lines': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.143/30'}], 'name': 'port-channel3232'}, 'ansible_loop_var': 'item'}], 'skipped': False, 'changed': True, 'warnings': ['To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device', 'To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device', 'To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device'], 'msg': 'All items completed'}"
+TASK [Display incomplete adjacencies] ******************************************
+skipping: [dub-ssp2]
+skipping: [dub-st1-sp1]
+skipping: [dub-st1-sp2]
+skipping: [dub-st2-sp1]
+skipping: [dub-st2-sp2]
+ok: [dub-ssp1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.10', 'state': 'EXSTART/ -', 'uptime': '00:35:52', 'local_ipaddr': '30.30.30.22', 'interface': 'Po131'}) => {
+    "msg": "dub-ssp1 has not fully established adjacency with 10.10.10.10 on Po131 - State: EXSTART/ -"
 }
-ok: [dub-st3-lf1] => {
-    "msg": "IP config result: {'results': [{'changed': True, 'commands': ['interface port-channel3131', 'ip address 30.30.30.131/30', 'no shutdown'], 'updates': ['interface port-channel3131', 'ip address 30.30.30.131/30', 'no shutdown'], 'invocation': {'module_args': {'lines': ['ip address 30.30.30.131/30', 'no shutdown'], 'parents': ['interface port-channel3131'], 'save_when': 'modified', 'match': 'line', 'replace': 'line', 'defaults': False, 'backup': False, 'src': None, 'replace_src': None, 'before': None, 'after': None, 'running_config': None, 'intended_config': None, 'backup_options': None, 'diff_against': None, 'diff_ignore_lines': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.131/30'}], 'name': 'port-channel3131'}, 'ansible_loop_var': 'item'}, {'changed': True, 'commands': ['interface port-channel3231', 'ip address 30.30.30.139/30', 'no shutdown'], 'updates': ['interface port-channel3231', 'ip address 30.30.30.139/30', 'no shutdown'], 'invocation': {'module_args': {'lines': ['ip address 30.30.30.139/30', 'no shutdown'], 'parents': ['interface port-channel3231'], 'save_when': 'modified', 'match': 'line', 'replace': 'line', 'defaults': False, 'backup': False, 'src': None, 'replace_src': None, 'before': None, 'after': None, 'running_config': None, 'intended_config': None, 'backup_options': None, 'diff_against': None, 'diff_ignore_lines': None}}, 'failed': False, 'item': {'ipv4': [{'address': '30.30.30.139/30'}], 'name': 'port-channel3231'}, 'ansible_loop_var': 'item'}], 'skipped': False, 'changed': True, 'warnings': ['To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device', 'To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device', 'To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device'], 'msg': 'All items completed'}"
+ok: [dub-ssp1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.9', 'state': 'EXSTART/ -', 'uptime': '00:35:56', 'local_ipaddr': '30.30.30.18', 'interface': 'Po132'}) => {
+    "msg": "dub-ssp1 has not fully established adjacency with 10.10.10.9 on Po132 - State: EXSTART/ -"
 }
-
-TASK [Wait for interfaces to stabilize] ****************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:44
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-Pausing for 3 seconds
-(ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
-ok: [dub-st3-lf1] => {
-    "changed": false,
-    "delta": 3,
-    "echo": true,
-    "rc": 0,
-    "start": "2025-10-05 11:12:35.441277",
-    "stderr": "",
-    "stdout": "Paused for 3.0 seconds",
-    "stop": "2025-10-05 11:12:38.446177",
-    "user_input": ""
+skipping: [dub-st1-lf1]
+ok: [dub-ssp4] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.10', 'state': 'EXSTART/ -', 'uptime': '00:35:52', 'local_ipaddr': '30.30.30.94', 'interface': 'Po431'}) => {
+    "msg": "dub-ssp4 has not fully established adjacency with 10.10.10.10 on Po431 - State: EXSTART/ -"
 }
-
-TASK [Verify port-channel configuration] ***************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:48
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf2] => (item={'ipv4': [{'address': '30.30.30.135/30'}], 'name': 'port-channel3132'}) => {
-    "ansible_loop_var": "item",
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "commands": [
-                "show run interface port-channel3132"
-            ],
-            "interval": 1,
-            "match": "all",
-            "retries": 9,
-            "wait_for": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.135/30"
-            }
-        ],
-        "name": "port-channel3132"
-    },
-    "stdout": [
-        "!Command: show running-config interface port-channel3132\n!Running configuration last done at: Sun Oct  5 15:09:37 2025\n!Time: Sun Oct  5 15:09:44 2025\n\nversion 10.5(1) Bios:version  \n\ninterface port-channel3132\n  description Uplink to dub-st3-sp1\n  mtu 9216"
-    ],
-    "stdout_lines": [
-        [
-            "!Command: show running-config interface port-channel3132",
-            "!Running configuration last done at: Sun Oct  5 15:09:37 2025",
-            "!Time: Sun Oct  5 15:09:44 2025",
-            "",
-            "version 10.5(1) Bios:version  ",
-            "",
-            "interface port-channel3132",
-            "  description Uplink to dub-st3-sp1",
-            "  mtu 9216"
-        ]
-    ]
+ok: [dub-ssp4] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.9', 'state': 'EXSTART/ -', 'uptime': '00:35:55', 'local_ipaddr': '30.30.30.90', 'interface': 'Po432'}) => {
+    "msg": "dub-ssp4 has not fully established adjacency with 10.10.10.9 on Po432 - State: EXSTART/ -"
 }
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf1] => (item={'ipv4': [{'address': '30.30.30.131/30'}], 'name': 'port-channel3131'}) => {
-    "ansible_loop_var": "item",
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "commands": [
-                "show run interface port-channel3131"
-            ],
-            "interval": 1,
-            "match": "all",
-            "retries": 9,
-            "wait_for": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.131/30"
-            }
-        ],
-        "name": "port-channel3131"
-    },
-    "stdout": [
-        "!Command: show running-config interface port-channel3131\n!Running configuration last done at: Sun Oct  5 15:09:43 2025\n!Time: Sun Oct  5 15:09:50 2025\n\nversion 10.5(1) Bios:version  \n\ninterface port-channel3131\n  description Uplink to dub-st3-sp1\n  mtu 9216\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd"
-    ],
-    "stdout_lines": [
-        [
-            "!Command: show running-config interface port-channel3131",
-            "!Running configuration last done at: Sun Oct  5 15:09:43 2025",
-            "!Time: Sun Oct  5 15:09:50 2025",
-            "",
-            "version 10.5(1) Bios:version  ",
-            "",
-            "interface port-channel3131",
-            "  description Uplink to dub-st3-sp1",
-            "  mtu 9216",
-            "  ip ospf network point-to-point",
-            "  ip router ospf 100 area 0.0.0.0",
-            "  ip ospf bfd"
-        ]
-    ]
+ok: [dub-ssp3] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.10', 'state': 'EXSTART/ -', 'uptime': '00:35:52', 'local_ipaddr': '30.30.30.70', 'interface': 'Po331'}) => {
+    "msg": "dub-ssp3 has not fully established adjacency with 10.10.10.10 on Po331 - State: EXSTART/ -"
 }
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf1] => (item={'ipv4': [{'address': '30.30.30.139/30'}], 'name': 'port-channel3231'}) => {
-    "ansible_loop_var": "item",
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "commands": [
-                "show run interface port-channel3231"
-            ],
-            "interval": 1,
-            "match": "all",
-            "retries": 9,
-            "wait_for": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.139/30"
-            }
-        ],
-        "name": "port-channel3231"
-    },
-    "stdout": [
-        "!Command: show running-config interface port-channel3231\n!Running configuration last done at: Sun Oct  5 15:09:43 2025\n!Time: Sun Oct  5 15:09:51 2025\n\nversion 10.5(1) Bios:version  \n\ninterface port-channel3231\n  description Uplink to dub-st3-sp2\n  mtu 9216\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd"
-    ],
-    "stdout_lines": [
-        [
-            "!Command: show running-config interface port-channel3231",
-            "!Running configuration last done at: Sun Oct  5 15:09:43 2025",
-            "!Time: Sun Oct  5 15:09:51 2025",
-            "",
-            "version 10.5(1) Bios:version  ",
-            "",
-            "interface port-channel3231",
-            "  description Uplink to dub-st3-sp2",
-            "  mtu 9216",
-            "  ip ospf network point-to-point",
-            "  ip router ospf 100 area 0.0.0.0",
-            "  ip ospf bfd"
-        ]
-    ]
+skipping: [dub-st1-lf2]
+ok: [dub-ssp3] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.9', 'state': 'EXSTART/ -', 'uptime': '00:35:55', 'local_ipaddr': '30.30.30.66', 'interface': 'Po332'}) => {
+    "msg": "dub-ssp3 has not fully established adjacency with 10.10.10.9 on Po332 - State: EXSTART/ -"
 }
-ok: [dub-st3-lf2] => (item={'ipv4': [{'address': '30.30.30.143/30'}], 'name': 'port-channel3232'}) => {
-    "ansible_loop_var": "item",
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "commands": [
-                "show run interface port-channel3232"
-            ],
-            "interval": 1,
-            "match": "all",
-            "retries": 9,
-            "wait_for": null
-        }
-    },
-    "item": {
-        "ipv4": [
-            {
-                "address": "30.30.30.143/30"
-            }
-        ],
-        "name": "port-channel3232"
-    },
-    "stdout": [
-        "!Command: show running-config interface port-channel3232\n!Running configuration last done at: Sun Oct  5 15:09:37 2025\n!Time: Sun Oct  5 15:09:45 2025\n\nversion 10.5(1) Bios:version  \n\ninterface port-channel3232\n  description Uplink to dub-st3-sp2\n  mtu 9216"
-    ],
-    "stdout_lines": [
-        [
-            "!Command: show running-config interface port-channel3232",
-            "!Running configuration last done at: Sun Oct  5 15:09:37 2025",
-            "!Time: Sun Oct  5 15:09:45 2025",
-            "",
-            "version 10.5(1) Bios:version  ",
-            "",
-            "interface port-channel3232",
-            "  description Uplink to dub-st3-sp2",
-            "  mtu 9216"
-        ]
-    ]
+skipping: [dub-st2-lf1]
+skipping: [dub-st2-lf2]
+ok: [dub-st3-sp2] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.1', 'state': 'EXSTART/ -', 'uptime': '00:36:00', 'local_ipaddr': '30.30.30.17', 'interface': 'Po111'}) => {
+    "msg": "dub-st3-sp2 has not fully established adjacency with 10.10.10.1 on Po111 - State: EXSTART/ -"
 }
-
-TASK [Display port-channel running config] *************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:55
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-ok: [dub-st3-lf1] => (item=port-channel3131) => {
-    "msg": "dub-st3-lf1 - port-channel3131 config:\n!Command: show running-config interface port-channel3131\n!Running configuration last done at: Sun Oct  5 15:09:43 2025\n!Time: Sun Oct  5 15:09:50 2025\n\nversion 10.5(1) Bios:version  \n\ninterface port-channel3131\n  description Uplink to dub-st3-sp1\n  mtu 9216\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\n"
+ok: [dub-st3-sp2] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.3', 'state': 'EXSTART/ -', 'uptime': '00:36:00', 'local_ipaddr': '30.30.30.65', 'interface': 'Po311'}) => {
+    "msg": "dub-st3-sp2 has not fully established adjacency with 10.10.10.3 on Po311 - State: EXSTART/ -"
 }
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf1] => (item=port-channel3231) => {
-    "msg": "dub-st3-lf1 - port-channel3231 config:\n!Command: show running-config interface port-channel3231\n!Running configuration last done at: Sun Oct  5 15:09:43 2025\n!Time: Sun Oct  5 15:09:51 2025\n\nversion 10.5(1) Bios:version  \n\ninterface port-channel3231\n  description Uplink to dub-st3-sp2\n  mtu 9216\n  ip ospf network point-to-point\n  ip router ospf 100 area 0.0.0.0\n  ip ospf bfd\n"
+ok: [dub-st3-sp2] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.4', 'state': 'EXSTART/ -', 'uptime': '00:36:00', 'local_ipaddr': '30.30.30.89', 'interface': 'Po411'}) => {
+    "msg": "dub-st3-sp2 has not fully established adjacency with 10.10.10.4 on Po411 - State: EXSTART/ -"
 }
-ok: [dub-st3-lf2] => (item=port-channel3132) => {
-    "msg": "dub-st3-lf2 - port-channel3132 config:\n!Command: show running-config interface port-channel3132\n!Running configuration last done at: Sun Oct  5 15:09:37 2025\n!Time: Sun Oct  5 15:09:44 2025\n\nversion 10.5(1) Bios:version  \n\ninterface port-channel3132\n  description Uplink to dub-st3-sp1\n  mtu 9216\n"
+ok: [dub-st3-sp1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.1', 'state': 'EXSTART/ -', 'uptime': '00:36:04', 'local_ipaddr': '30.30.30.21', 'interface': 'Po111'}) => {
+    "msg": "dub-st3-sp1 has not fully established adjacency with 10.10.10.1 on Po111 - State: EXSTART/ -"
 }
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf2] => (item=port-channel3232) => {
-    "msg": "dub-st3-lf2 - port-channel3232 config:\n!Command: show running-config interface port-channel3232\n!Running configuration last done at: Sun Oct  5 15:09:37 2025\n!Time: Sun Oct  5 15:09:45 2025\n\nversion 10.5(1) Bios:version  \n\ninterface port-channel3232\n  description Uplink to dub-st3-sp2\n  mtu 9216\n"
+ok: [dub-st3-sp2] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.15', 'state': 'EXSTART/ -', 'uptime': '00:35:59', 'local_ipaddr': '30.30.30.129', 'interface': 'Po3231'}) => {
+    "msg": "dub-st3-sp2 has not fully established adjacency with 10.10.10.15 on Po3231 - State: EXSTART/ -"
 }
-
-TASK [Verify IP addresses are applied] *****************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:64
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf2] => {
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "commands": [
-                "show ip interface brief | include port-channel"
-            ],
-            "interval": 1,
-            "match": "all",
-            "retries": 9,
-            "wait_for": null
-        }
-    },
-    "stdout": [
-        ""
-    ],
-    "stdout_lines": [
-        [
-            ""
-        ]
-    ]
+ok: [dub-st3-sp1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.3', 'state': 'EXSTART/ -', 'uptime': '00:36:03', 'local_ipaddr': '30.30.30.69', 'interface': 'Po311'}) => {
+    "msg": "dub-st3-sp1 has not fully established adjacency with 10.10.10.3 on Po311 - State: EXSTART/ -"
 }
-ok: [dub-st3-lf1] => {
-    "changed": false,
-    "invocation": {
-        "module_args": {
-            "commands": [
-                "show ip interface brief | include port-channel"
-            ],
-            "interval": 1,
-            "match": "all",
-            "retries": 9,
-            "wait_for": null
-        }
-    },
-    "stdout": [
-        ""
-    ],
-    "stdout_lines": [
-        [
-            ""
-        ]
-    ]
+ok: [dub-st3-sp2] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.16', 'state': 'EXSTART/ -', 'uptime': '00:35:59', 'local_ipaddr': '30.30.30.133', 'interface': 'Po3232'}) => {
+    "msg": "dub-st3-sp2 has not fully established adjacency with 10.10.10.16 on Po3232 - State: EXSTART/ -"
 }
-
-TASK [Display IP interface status] *********************************************
-task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/fix_portchannel_ips.yml:70
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-ok: [dub-st3-lf1] => {
-    "msg": "dub-st3-lf1 - Port-Channel IP Status:\n"
+ok: [dub-st3-sp1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.4', 'state': 'EXSTART/ -', 'uptime': '00:36:04', 'local_ipaddr': '30.30.30.93', 'interface': 'Po411'}) => {
+    "msg": "dub-st3-sp1 has not fully established adjacency with 10.10.10.4 on Po411 - State: EXSTART/ -"
 }
-redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-ok: [dub-st3-lf2] => {
-    "msg": "dub-st3-lf2 - Port-Channel IP Status:\n"
+ok: [dub-st3-sp1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.15', 'state': 'EXSTART/ -', 'uptime': '00:36:06', 'local_ipaddr': '30.30.30.137', 'interface': 'Po3131'}) => {
+    "msg": "dub-st3-sp1 has not fully established adjacency with 10.10.10.15 on Po3131 - State: EXSTART/ -"
+}
+ok: [dub-st3-lf1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.10', 'state': 'EXSTART/ -', 'uptime': '00:36:08', 'local_ipaddr': '30.30.30.138', 'interface': 'Po3131'}) => {
+    "msg": "dub-st3-lf1 has not fully established adjacency with 10.10.10.10 on Po3131 - State: EXSTART/ -"
+}
+ok: [dub-st3-sp1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.16', 'state': 'EXSTART/ -', 'uptime': '00:36:05', 'local_ipaddr': '30.30.30.141', 'interface': 'Po3132'}) => {
+    "msg": "dub-st3-sp1 has not fully established adjacency with 10.10.10.16 on Po3132 - State: EXSTART/ -"
+}
+ok: [dub-st3-lf1] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.9', 'state': 'EXSTART/ -', 'uptime': '00:36:14', 'local_ipaddr': '30.30.30.130', 'interface': 'Po3231'}) => {
+    "msg": "dub-st3-lf1 has not fully established adjacency with 10.10.10.9 on Po3231 - State: EXSTART/ -"
+}
+ok: [dub-st3-lf2] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.10', 'state': 'EXSTART/ -', 'uptime': '00:36:14', 'local_ipaddr': '30.30.30.142', 'interface': 'Po3132'}) => {
+    "msg": "dub-st3-lf2 has not fully established adjacency with 10.10.10.10 on Po3132 - State: EXSTART/ -"
+}
+ok: [dub-st3-lf2] => (item={'ospf_pid': '', 'vrf': '', 'neighbor_ipaddr': '10.10.10.9', 'state': 'EXSTART/ -', 'uptime': '00:36:20', 'local_ipaddr': '30.30.30.134', 'interface': 'Po3232'}) => {
+    "msg": "dub-st3-lf2 has not fully established adjacency with 10.10.10.9 on Po3232 - State: EXSTART/ -"
 }
 
 PLAY RECAP *********************************************************************
-dub-st3-lf1                : ok=10   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-dub-st3-lf2                : ok=9    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-ssp1                   : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-ssp2                   : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-ssp3                   : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-ssp4                   : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st1-lf1                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st1-lf2                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st1-sp1                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st1-sp2                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st2-lf1                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st2-lf2                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st2-sp1                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st2-sp2                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st3-lf1                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st3-lf2                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st3-sp1                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+dub-st3-sp2                : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 
-dub-st3-lf2 | FAILED! => {
-    "changed": false,
-    "msg": "show interface port-channel3131 | include mode\r\r\n                                                          ^\r\nInvalid range at '^' marker.\r\n\rdub-st3-lf2# "
-}
-dub-st3-lf1 | SUCCESS => {
-    "changed": false,
-    "stdout": [
-        ""
-    ],
-    "stdout_lines": [
+
+PLAY [Diagnose Site 3 OSPF Issues] *********************************************
+
+TASK [Check interface MTU on problem port-channels] ****************************
+ok: [dub-st3-lf1]
+ok: [dub-st3-lf2]
+ok: [dub-st3-sp2]
+ok: [dub-st3-sp1]
+
+TASK [Check OSPF interface details] ********************************************
+ok: [dub-st3-lf1]
+ok: [dub-st3-sp2]
+ok: [dub-st3-sp1]
+ok: [dub-st3-lf2]
+
+TASK [Check BFD sessions] ******************************************************
+ok: [dub-st3-lf2]
+ok: [dub-st3-sp2]
+ok: [dub-st3-sp1]
+ok: [dub-st3-lf1]
+
+TASK [Display outputs] *********************************************************
+ok: [dub-st3-sp1] => {
+    "msg": [
         [
-            ""
+            [
+                "MTU 1500 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 8000000 Kbit , DLY 5000 usec",
+                "  MTU 1500 bytes, BW 8000000 Kbit , DLY 5000 usec",
+                "  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,"
+            ]
+        ],
+        [
+            [
+                "OSPF Process ID 100 VRF default",
+                " Total number of interface: 7",
+                " Interface               ID     Area            Cost   State    Neighbors Status",
+                " Po111                   5      0.0.0.0         20     P2P      1         up  ",
+                " Po211                   7      0.0.0.0         20     P2P      1         up  ",
+                " Po311                   2      0.0.0.0         20     P2P      1         up  ",
+                " Po411                   6      0.0.0.0         20     P2P      1         up  ",
+                " Po3131                  3      0.0.0.0         20     P2P      1         up  ",
+                " Po3132                  4      0.0.0.0         20     P2P      1         up  ",
+                " Lo0                     1      0.0.0.0         1      LOOPBACK 0         up"
+            ]
+        ],
+        [
+            [
+                "OurAddr         NeighAddr       LD/RD                 RH/RS           Holdown(mult)     State       Int                   Vrf                              Type     BSID           ",
+                "30.30.30.42     30.30.30.41     1090519041/0          Down            N/A(3)            Down        Po211                 default                          SH       N/A"
+            ]
         ]
     ]
 }
+ok: [dub-st3-lf1] => {
+    "msg": [
+        [
+            [
+                "MTU 1500 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 8000000 Kbit , DLY 5000 usec",
+                "  MTU 1500 bytes, BW 8000000 Kbit , DLY 5000 usec",
+                "  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,"
+            ]
+        ],
+        [
+            [
+                "OSPF Process ID 100 VRF default",
+                " Total number of interface: 3",
+                " Interface               ID     Area            Cost   State    Neighbors Status",
+                " Po3131                  1      0.0.0.0         20     P2P      1         up  ",
+                " Po3231                  3      0.0.0.0         20     P2P      1         up  ",
+                " Lo0                     2      0.0.0.0         1      LOOPBACK 0         up"
+            ]
+        ],
+        [
+            [
+                ""
+            ]
+        ]
+    ]
+}
+ok: [dub-st3-sp2] => {
+    "msg": [
+        [
+            [
+                "MTU 1500 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 8000000 Kbit , DLY 5000 usec",
+                "  MTU 1500 bytes, BW 8000000 Kbit , DLY 5000 usec",
+                "  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,"
+            ]
+        ],
+        [
+            [
+                "OSPF Process ID 100 VRF default",
+                " Total number of interface: 7",
+                " Interface               ID     Area            Cost   State    Neighbors Status",
+                " Po111                   3      0.0.0.0         20     P2P      1         up  ",
+                " Po211                   7      0.0.0.0         20     P2P      1         up  ",
+                " Po311                   2      0.0.0.0         20     P2P      1         up  ",
+                " Po411                   4      0.0.0.0         20     P2P      1         up  ",
+                " Po3231                  5      0.0.0.0         20     P2P      1         up  ",
+                " Po3232                  6      0.0.0.0         20     P2P      1         up  ",
+                " Lo0                     1      0.0.0.0         1      LOOPBACK 0         up"
+            ]
+        ],
+        [
+            [
+                "OurAddr         NeighAddr       LD/RD                 RH/RS           Holdown(mult)     State       Int                   Vrf                              Type     BSID           ",
+                "30.30.30.46     30.30.30.45     1090519041/0          Down            N/A(3)            Down        Po211                 default                          SH       N/A"
+            ]
+        ]
+    ]
+}
+ok: [dub-st3-lf2] => {
+    "msg": [
+        [
+            [
+                "MTU 1500 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 1000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 10000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 9216 bytes, BW 2000000 Kbit , DLY 10 usec",
+                "  MTU 1500 bytes, BW 8000000 Kbit , DLY 5000 usec",
+                "  MTU 1500 bytes, BW 8000000 Kbit , DLY 5000 usec",
+                "  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,"
+            ]
+        ],
+        [
+            [
+                "OSPF Process ID 100 VRF default",
+                " Total number of interface: 3",
+                " Interface               ID     Area            Cost   State    Neighbors Status",
+                " Po3132                  2      0.0.0.0         20     P2P      1         up  ",
+                " Po3232                  3      0.0.0.0         20     P2P      1         up  ",
+                " Lo0                     1      0.0.0.0         1      LOOPBACK 0         up"
+            ]
+        ],
+        [
+            [
+                ""
+            ]
+        ]
+    ]
+}
+
+PLAY RECAP *********************************************************************
+dub-st3-lf1                : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-st3-lf2                : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-st3-sp1                : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+dub-st3-sp2                : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

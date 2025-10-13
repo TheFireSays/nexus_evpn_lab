@@ -1,0 +1,30 @@
+---
+- name: Diagnose Site 3 OSPF Issues
+  hosts: dub-st3-sp1,dub-st3-sp2,dub-st3-lf1,dub-st3-lf2
+  gather_facts: false
+
+  tasks:
+    - name: Check interface MTU on problem port-channels
+      cisco.nxos.nxos_command:
+        commands:
+          - show interface | include MTU
+      register: mtu_output
+
+    - name: Check OSPF interface details
+      cisco.nxos.nxos_command:
+        commands:
+          - show ip ospf interface brief
+      register: ospf_int
+
+    - name: Check BFD sessions
+      cisco.nxos.nxos_command:
+        commands:
+          - show bfd neighbors
+      register: bfd_sessions
+
+    - name: Display outputs
+      debug:
+        msg:
+          - "{{ mtu_output.stdout_lines }}"
+          - "{{ ospf_int.stdout_lines }}"
+          - "{{ bfd_sessions.stdout_lines }}"

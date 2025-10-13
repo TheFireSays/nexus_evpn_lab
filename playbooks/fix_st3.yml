@@ -1,0 +1,145 @@
+---
+# Targeted fix for Site 3 based on diagnostic findings
+# Root cause: BFD sessions down, preventing OSPF adjacencies
+- name: Fix Site 3 OSPF - Remove BFD temporarily
+  hosts: dub-st3-sp1,dub-st3-sp2,dub-st3-lf1,dub-st3-lf2
+  gather_facts: false
+  
+  vars:
+    site3_interfaces:
+      dub-st3-sp1:
+        - port-channel111
+        - port-channel211
+        - port-channel311
+        - port-channel411
+        - port-channel3131
+        - port-channel3132
+      dub-st3-sp2:
+        - port-channel111
+        - port-channel211
+        - port-channel311
+        - port-channel411
+        - port-channel3231
+        - port-channel3232
+      dub-st3-lf1:
+        - port-channel3131
+        - port-channel3231
+      dub-st3-lf2:
+        - port-channel3132
+        - port-channel3232
+
+  tasks:
+    - name: Remove BFD from OSPF interfaces
+      cisco.nxos.nxos_config:
+        lines:
+          - no ip ospf bfd
+        parents: "interface {{ item }}"
+      loop: "{{ site3_interfaces[inventory_hostname] }}"
+      register: remove_bfd
+
+    - name: Wait for OSPF to reconverge without BFD
+      pause:
+        seconds: 15
+        prompt: "Waiting for OSPF to reconverge..."
+
+    - name: Clear OSPF process for clean state
+      cisco.nxos.nxos_command:
+        commands:
+          - clear ip ospf 100
+      vars:
+        ansible_command_timeout: 60
+
+    - name: Wait for OSPF adjacencies to reform
+      pause:
+        seconds: 30
+
+    - name: Verify OSPF neighbors
+      cisco.nxos.nxos_command:
+        commands:
+          - show ip ospf neighbor
+      register: ospf_check
+
+    - name: Parse OSPF neighbors
+      ansible.utils.cli_parse:
+        text: "{{ ospf_check.stdout[0] }}"
+        parser:
+          name: ansible.netcommon.ntc_templates
+          command: show ip ospf neighbor
+          os: cisco_nxos
+      register: parsed_neighbors
+
+    - name: Check for non-FULL neighbors
+      set_fact:
+        non_full: "{{ parsed_neighbors.parsed | rejectattr('state', 'search', 'FULL') | list }}"
+
+    - name: Display results
+      debug:
+        msg:
+          - "Device: {{ inventory_hostname }}"
+          - "Total neighbors: {{ parsed_neighbors.parsed | length }}"
+          - "FULL neighbors: {{ parsed_neighbors.parsed | selectattr('state', 'search', 'FULL') | list | length }}"
+          - "{% if non_full | length == 0 %}✅ All adjacencies FULL after removing BFD{% else %}⚠️ Still have {{ non_full | length }} non-FULL adjacencies{% endif %}"
+
+    - name: Show any remaining issues
+      debug:
+        msg: "Still stuck: {{ item.neighbor_ipaddr }} on {{ item.interface }} - {{ item.state }}"
+      loop: "{{ non_full }}"
+      when: non_full | length > 0
+
+- name: Verify superspines can reach Site 3
+  hosts: dub-ssp1,dub-ssp2,dub-ssp3,dub-ssp4
+  gather_facts: false
+
+  tasks:
+    - name: Check OSPF neighbors to Site 3
+      cisco.nxos.nxos_command:
+        commands:
+          - show ip ospf neighbor
+      register: ssp_neighbors
+
+    - name: Parse superspine neighbors
+      ansible.utils.cli_parse:
+        text: "{{ ssp_neighbors.stdout[0] }}"
+        parser:
+          name: ansible.netcommon.ntc_templates
+          command: show ip ospf neighbor
+          os: cisco_nxos
+      register: ssp_parsed
+
+    - name: Check for Site 3 adjacencies
+      set_fact:
+        site3_neighbors: "{{ ssp_parsed.parsed | selectattr('neighbor_ipaddr', 'in', ['10.10.10.9', '10.10.10.10']) | list }}"
+
+    - name: Display Site 3 connectivity
+      debug:
+        msg:
+          - "{{ inventory_hostname }} connections to Site 3:"
+          - "{% for nbr in site3_neighbors %}  - {{ nbr.neighbor_ipaddr }} on {{ nbr.interface }}: {{ nbr.state }}{% endfor %}"
+      when: site3_neighbors | length > 0
+
+- name: Summary and next steps
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Remediation complete
+      debug:
+        msg:
+          - "========================================="
+          - "Site 3 OSPF Remediation Complete"
+          - "========================================="
+          - ""
+          - "Actions taken:"
+          - "✅ Removed 'ip ospf bfd' from all Site 3 interfaces"
+          - "✅ Cleared OSPF process for clean negotiation"
+          - "✅ Verified adjacencies across fabric"
+          - ""
+          - "Next steps:"
+          - "1. Run verify_ospf_neighbors.yml to confirm all FULL"
+          - "2. Troubleshoot BFD issues separately (optional)"
+          - "3. Re-enable BFD after BFD is working"
+          - ""
+          - "To investigate BFD issues later:"
+          - "  - Check 'show bfd neighbors detail'"
+          - "  - Verify BFD is enabled: 'feature bfd'"
+          - "  - Check BFD intervals match on both sides"

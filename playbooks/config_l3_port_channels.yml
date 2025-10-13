@@ -1,16 +1,16 @@
 ---
-- name: Configure L3 Port-Channels - Simple Method
+- name: Configure L3 Port-Channels
   hosts: data_switches
   gather_facts: false
   
   tasks:
-    - name: Configure LAG membership first
+    - name: Configure LAG membership
       cisco.nxos.nxos_lag_interfaces:
         config: "{{ lag_interfaces }}"
         state: merged
       when: lag_interfaces is defined
 
-    - name: Configure each port-channel as L3 with all settings
+    - name: Configure L3 interaces with an IP address
       cisco.nxos.nxos_config:
         lines:
           - "no switchport"
@@ -27,6 +27,8 @@
         lines:
           - "description {{ item.description }}"
           - "mtu {{ item.mtu }}"
+          - "no ip redirects"
+          - "no ip ospf bfd"
         parents: "interface {{ item.name }}"
       loop: "{{ interfaces }}"
       when: 
