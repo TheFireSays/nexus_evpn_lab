@@ -7,7 +7,7 @@
     backup_dir: "{{ playbook_dir }}/../configs"
 
   tasks:
-    - name: Backup config to file - nxos
+    - name: Backup config to file
       cisco.nxos.nxos_config:
         backup: yes
         backup_options:
@@ -15,6 +15,7 @@
           dir_path: "{{ backup_dir }}"
       register: backup_result
       when: "'data_switches' in group_names"
+
 
     - name: Backup config to file - ios
       cisco.nxos.ios_config:
