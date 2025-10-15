@@ -13,3 +13,5 @@ sites:
     description: "Dublin DC Site 3"
     location: "Classified"
 
+pim_rp_address: 10.10.10.254
+

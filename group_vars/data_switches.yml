@@ -19,7 +19,7 @@ loopbacks:
     description: "Router ID"
     enabled: true
   - name: loopback1
-    description: "BGP-EVPN int"
+    description: "NVE source"
     enabled: true
 
 loopback_ips:
