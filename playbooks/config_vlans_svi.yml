@@ -7,11 +7,11 @@
     - name: Create VLANs - ID, name, VNI
       cisco.nxos.nxos_vlans:
         config:
-          - vlan_id: "(( item.id ))"
+          - vlan_id: "{{ item.id }}"
             name: "{{ item.name }}"
             mapped_vni: "{{ item.vni }}"
-        state: active
-        loop: "{{ vlans }}"
+        state: merged
+      loop: "{{ vlans }}"
 
     - name: Create anycast SVIs
       cisco.nxos.nxos_l3_interfaces:
@@ -26,13 +26,13 @@
       loop: "{{ vlans }}"
 
     - name: Show VLANs
-      cisco.nxos.nxos_config:
+      cisco.nxos.nxos_command:
         commands:
           - "show vlan"
       register: sh_vlans
         
     - name: Show SVIs
-      cisco.nxos.nxos_config:
+      cisco.nxos.nxos_command:
         commands:
           - "show ip interface brief | i vlan"
       register: sh_svis
@@ -43,4 +43,4 @@
 
     - name: Show SVIs
       ansible.builtin.debug:
-        var: sh_vlans.stdout_lines
+        var: sh_svis.stdout_lines
