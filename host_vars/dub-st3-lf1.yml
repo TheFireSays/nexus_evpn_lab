@@ -32,3 +32,23 @@ lag_interfaces:
     -   member: Ethernet1/4
         mode: active
     name: port-channel3231
+
+vlans:  
+  - id: 300
+    name: Classified - Secret information
+    vni: 10300
+    svi:
+      ip: "50.50.130.1/24"
+      description: "VLAN 100 anycast gateway"
+  - id: 400
+    name: Classified - Top Secret information
+    vni: 10400
+    svi:
+      ip: "50.50.140.1/24"
+      description: "VLAN 100 anycast gateway"
+  - id: 500
+    name: Classified - Super Duper Secret information
+    vni: 10500
+    svi:
+      ip: "50.50.150.1/24"
+      description: "VLAN 100 anycast gateway"
