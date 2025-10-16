@@ -40,7 +40,7 @@
     - name: Show SVIs
       cisco.nxos.nxos_command:
         commands:
-          - "show ip interface brief | i vlan"
+          - "show ip interface brief | i Vlan"
       register: sh_svis
 
     - name: Show VLANs
