@@ -35,19 +35,19 @@ lag_interfaces:
 
 vlans:
   - id: 200
-    name: Confidential information
+    name: Confidential
     vni: 10200
     svi:
       ip: "50.50.120.1/24"
       description: "VLAN 100 anycast gateway"
   - id: 300
-    name: Classified - Secret information
+    name: Classified_Secret
     vni: 10300
     svi:
       ip: "50.50.130.1/24"
       description: "VLAN 100 anycast gateway"
   - id: 400
-    name: Classified - Top Secret information
+    name: Classified_Top_Secret
     vni: 10400
     svi:
       ip: "50.50.140.1/24"
