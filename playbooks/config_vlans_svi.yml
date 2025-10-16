@@ -19,7 +19,13 @@
           - name: interface vlan {{ item.id }}
             ipv4:
               - address: "{{ item.svi.ip}}"
-              - description: "{{ item.svi.description }}"
+        state: merged
+      loop: "{{ vlans }}"
+
+    - name: Add anycast SVI description
+      cisco.nxos.nxos_interfaces: 
+        config:
+          - description: "{{ item.svi.description }}"
         state: merged
       loop: "{{ vlans }}"
 
