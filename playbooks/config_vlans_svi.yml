@@ -18,10 +18,8 @@
         config:
           - name: interface vlan {{ item.id }}
             ipv4:
-              address:
-                "{{ item.svi.ip}}"
-              description:
-                "{{ item.svi.description }}"
+              - address: "{{ item.svi.ip}}"
+              - description: "{{ item.svi.description }}"
         state: merged
       loop: "{{ vlans }}"
 
