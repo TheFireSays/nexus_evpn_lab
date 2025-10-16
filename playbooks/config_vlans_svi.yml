@@ -16,7 +16,7 @@
     - name: Create anycast SVIs
       cisco.nxos.nxos_l3_interfaces:
         config:
-          - name: interface vlan {{ item.id }}
+          - name: vlan {{ item.id }}
             ipv4:
               - address: "{{ item.svi.ip}}"
         state: merged
