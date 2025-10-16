@@ -25,7 +25,7 @@
     - name: Add anycast SVI description
       cisco.nxos.nxos_interfaces: 
         config:
-          - name: "{{ item.id }}"
+          - name: "vlan{{ item.id }}"
             description: "{{ item.svi.description }}"
             enabled: true
         state: merged
