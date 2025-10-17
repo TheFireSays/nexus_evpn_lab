@@ -27,7 +27,9 @@
               safi: evpn
               retain_route_target:
                 route_map: all
-      when: inventory_hostname not in groups['leafs']
+              maximum_paths: "{{ max_ecmp_paths }}"  
+              maximum_paths_ibgp: "{{ max_ecmp_paths }}" 
+      when: inventory_hostname not in groups['leafs'
 
     - name:  BGP address-family config for leafs
       cisco.nxos.nxos_bgp_address_family:
@@ -36,6 +38,8 @@
           address_family:
             - afi: l2vpn
               safi: evpn
+              maximum_paths: "{{ max_ecmp_paths }}"  
+              maximum_paths_ibgp: "{{ max_ecmp_paths }}" 
       when: inventory_hostname in groups['leafs']
            
     - name: Configure BGP neighbors for EVPN
