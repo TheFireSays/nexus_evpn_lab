@@ -53,7 +53,7 @@
       loop: "{{ bgp_ neighbors }}"
 
     - name: Configure BGP neighbor settings globally
-      cisco.nxos.nxos_bgp_neighbor:
+      cisco.nxos.nxos_bgp_neighbor_address_family:
         config:
           as_number: "{{ asn }}"
           neighbors:
