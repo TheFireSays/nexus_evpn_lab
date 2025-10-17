@@ -84,3 +84,32 @@ lag_interfaces:
     -   member: Ethernet1/12
         mode: active
     name: port-channel3232
+
+bgp_neighbors:
+  # Upstream to all Superspines
+  - neighbor: 20.20.20.1
+    description: "dub-ssp1"
+    rr_client: false
+  
+  - neighbor: 20.20.20.2
+    description: "dub-ssp2"
+    rr_client: false
+  
+  - neighbor: 20.20.20.3
+    description: "dub-ssp3"
+    rr_client: false
+  
+  - neighbor: 20.20.20.4
+    description: "dub-ssp4"
+    rr_client: false
+  
+  # Downstream to Site 1 Leafs (as RR server)
+  - neighbor: 20.20.20.15
+    description: "dub-st3-lf1"
+    rr_client: true
+  
+  - neighbor: 20.20.20.16
+    description: "dub-st3-lf2"
+    rr_client: true
+
+

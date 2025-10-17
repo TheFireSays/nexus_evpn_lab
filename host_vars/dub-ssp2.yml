@@ -108,3 +108,24 @@ lag_interfaces:
     -   member: Ethernet1/12
         mode: active
     name: port-channel232
+
+# BGP neighbors SSP <> SP
+bgp_neighbors:
+    - neighbor: 20.20.20.5
+      description: "dub-st1-sp1"
+      rr_client: true
+    - neighbor: 20.20.20.6
+      description: "dub-st1-sp2"
+      rr_client: true
+    - neighbor: 20.20.20.7
+      description: "dub-st2-sp1"
+      rr_client: true
+    - neighbor: 20.20.20.8
+      description: "dub-st2-sp2"
+      rr_client: true
+    - neighbor: 20.20.20.9
+      description: "dub-st3-sp1"
+      rr_client: true
+    - neighbor: 20.20.20.10
+      description: "dub-st3-sp2"
+      rr_client: true

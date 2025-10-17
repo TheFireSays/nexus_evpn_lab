@@ -1,0 +1,70 @@
+---
+- name: BGP configuration
+  hosts: data_switches
+  gather_facts: false
+  vars:
+    asn: 6500
+    loopback0: "10.10.10.{{ ansible_host.split('.')[3] }}"
+    max_ecmp_paths: 4
+    bgp_keepalive: 3
+    bgp_holdtime: 9
+
+  tasks:
+    - name: Global BGP config
+      cisco.nxos.nxos_bgp_global:
+        config:
+          as_number: "{{ asn }}"
+          router_id: "{{ loopback0 }}"
+          log_neighbor_changes: true
+          maximum_paths: "{{ max_ecmp_paths }}"
+          
+    - name: BGP address-family config for route reflectors - SSPs and SPs
+      cisco.nxos.nxos_bgp_address_family:
+        config: 
+          as_number: "{{ asn }}"
+          address_family:
+            - afi: l2vpn
+              safi: evpn
+              retain_route_target:
+                route_map: all
+      when: inventory_hostname not in groups['leafs']
+
+    - name:  BGP address-family config for leafs
+      cisco.nxos.nxos_bgp_address_family:
+        config: 
+          as_number: "{{ asn }}"
+          address_family:
+            - afi: l2vpn
+              safi: evpn
+      when: inventory_hostname in groups['leafs']
+           
+    - name: Configure BGP neighbors for EVPN
+      cisco.nxos.nxos_bgp_neighbor_address_family:
+        config:
+          as_number: "{{ asn }}"
+          neighbors:
+            - neighbor_address: "{{ item.neighbor }}"
+              address_family: 
+                - afi: l2vpn
+                  safi: evpn
+                  send_community:
+                    both: true
+                  route_reflector_client: "{{ item.rr_client }}"
+      loop: "{{ bgp_ neighbors }}"
+
+    - name: Configure BGP neighbor settings globally
+      cisco.nxos.nxos_bgp_neighbor:
+        config:
+          as_number: "{{ asn }}"
+          neighbors:
+            - neighbor_address: "{{ item.neighbor }}"
+              remote_as: "{{ asn }}"
+              description: "{{ item.description }}"
+              update_source: loopback0
+              timers:
+                keepalive: "{{ bgp_keepalive }}"
+                holdtime: "{{ bgp_holdtime }}"
+        loop: "{{ bgp_neighbors }}"
+
+
+     
