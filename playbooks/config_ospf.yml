@@ -70,7 +70,6 @@
       cisco.nxos.nxos_command:
         commands:
           - show ip ospf neighbors
-          #- show ip ospf {{ ospf_process_id }}
       register: ospf_neighbors
       tags: verify
 
