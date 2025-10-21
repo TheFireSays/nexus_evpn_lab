@@ -11,8 +11,8 @@
     tasks:
       - name: Create VRF, apply VNI and route distinguisher
         cisco.nxos.nxos_vrf_global:
-          vrfs:
-            config:  |
+          config:
+            vrfs:  |
               {% set site = inventory_hostname.split('-')[1] %}
               {% for vlan in vlan_map[site] %}
               - name: 'vrf{{ vlan }}'
@@ -32,7 +32,7 @@
           route_target_both_auto_evpn: true
           state: present
         loop: "{{ vlan_map[inventory_hostname.split('-')[1]] }}"
-        when: inventory_hostname.split('1')[1] in vlan_map.keys()
+        when: inventory_hostname.split('-')[1] in vlan_map.keys()
                     
       - name: Verify VRFs
         cisco.nxos.nxos_command:
@@ -43,5 +43,5 @@
       - name: Show configured VRFs
         debug:
           msg: |
-            === {{ inventory_hostname" }} ===
-            "{{ print_vrfs.stdout[0]] }}"
+            === {{ inventory_hostname }} ===
+            "{{ print_vrfs.stdout[0] }}"
