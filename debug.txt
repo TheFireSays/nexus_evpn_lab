@@ -1,4 +1,13 @@
 
-PLAY [Create VLANs and SVIs] ***************************************************
+PLAY [BGP configuration] *******************************************************
 
-TASK [Create VLANs - ID, name, VNI] ********************************************
+TASK [Global BGP config] *******************************************************
+changed: [dub-ssp1]
+
+TASK [BGP address-family config for route reflectors - SSPs and SPs] ***********
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: dub-ssp1(config-router-af)#
+fatal: [dub-ssp1]: FAILED! => {"msg": "Unexpected failure during module execution: advertise l2vpn evpn\r\r\n                              ^\r\n% Invalid command at '^' marker.\r\n\rdub-ssp1(config-router-af)# ", "stdout": ""}
+
+PLAY RECAP *********************************************************************
+dub-ssp1                   : ok=1    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
