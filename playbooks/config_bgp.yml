@@ -44,11 +44,11 @@
           address_family:
             - afi: l2vpn
               safi: evpn
+            - afi: ipv4
+              safi: unicast
               advertise_l2vpn_evpn: true    
               advertise_pip: true            
               advertise_system_mac: true
-            - afi: ipv4
-              safi: unicast
               maximum_paths:
                 parallel_paths: "{{ max_ecmp_paths }}"
       when: inventory_hostname in groups['leafs']
