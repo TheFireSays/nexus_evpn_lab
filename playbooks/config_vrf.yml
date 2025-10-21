@@ -3,55 +3,44 @@
     gather_facts: false
     hosts: leafs
     vars:
-      vlans_st1: [100, 200, 300]
-      vlans_st2: [200, 300, 400]
-      vlans_st3: [300, 400, 500]
-      vlans_all: [100, 200, 300, 400, 500]
-
+      vlan_map:
+        st1: [100, 200, 300]
+        st2: [200, 300, 400]
+        st3: [300, 400, 500]
+      
     tasks:
       - name: Create VRF, apply VNI and route distinguisher
-        cisco..nxos.nxos_vrf_global:
-          vrfs:
-            - name: '{{ item }}'
-              description: 'VLAN {{ item }} | VNI 10{{ item }}'
-              rd: auto
-              vni:
-               layer_3: true
-               vni_number: 10{{ item }}
-        loop: vlans_st1
-        when: when 'st1' in inventory_hostname
-
-      - name: Create VRF, apply VNI and route distinguisher
         cisco.nxos.nxos_vrf_global:
-          vrfs:
-            - name: '{{ item }}'
+          vrfs: |
+            {% set site = inventory_hostname.split('-')[1] %}
+            {% for vlan in vlan_mapping[site] %}
+            - name: 'vrf{{ item }}'
               description: 'VLAN {{ item }} | VNI 10{{ item }}'
               rd: auto
               vni:
                layer_3: true
                vni_number: 10{{ item }}
-        loop: vlans_st2
-        when: when 'st2' in inventory_hostname
-
-      - name: Create VRF, apply VNI and route distinguisher
-        cisco.nxos.nxos_vrf_global:
-          vrfs:
-            - name: '{{ item }}'
-              description: 'VLAN {{ item }} | VNI 10{{ item }}'
-              rd: auto
-              vni:
-               layer_3: true
-               vni_number: 10{{ item }}
-        loop: vlans_st3
-        when: when 'st3' in inventory_hostname
+            {% endfor %}
+          state: merged
+        when: inventory_hostname.split('-')[1] in vlan_map.keys()
 
       - name: VRF address-family - apply RD and RT
-        cisco.nxos.nxos_vrf_address_family:
-          config:
-            - name: '{{ item }}' 
-              address_families:
-                - afi: ipv4
-                  safi: unicast
-                  route_target:
-                    - export: 'auto'    
-                    - import: 'auto'   
+        cisco.nxos.nxos_vrf_af:
+          vrf: 'vrf{{ item }}'
+          afi: ipv4
+          route_target_both_auto_evpn: true
+          state: present
+        loop: "{{ vlan_map[inventory_hostname.split('-')[1]] }}"
+        when: inventory_hostname.split('1')[1] in vlan_map.keys()
+                    
+      - name: Verify VRFs
+        cisco.nxos.nxos_command:
+          commands:
+            - show running-config | section ^vrf
+        register: print_vrfs
+
+      - name: Show configured VRFs
+        debug:
+          msg: |
+            === {{ inventory_hostname" }} ===
+            "{{ print_vrfs.stdout[0]] }}"
