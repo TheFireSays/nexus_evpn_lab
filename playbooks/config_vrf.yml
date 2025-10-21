@@ -11,16 +11,17 @@
     tasks:
       - name: Create VRF, apply VNI and route distinguisher
         cisco.nxos.nxos_vrf_global:
-          vrfs: |
-            {% set site = inventory_hostname.split('-')[1] %}
-            {% for vlan in vlan_map[site] %}
-            - name: 'vrf{{ vlan }}'
-              description: 'VLAN {{ vlan }} | VNI 10{{ vlan }}'
-              rd: auto
-              vni:
-               layer_3: true
-               vni_number: 10{{ vlan }}
-            {% endfor %}
+          vrfs:  |
+            config:
+              {% set site = inventory_hostname.split('-')[1] %}
+              {% for vlan in vlan_map[site] %}
+              - name: 'vrf{{ vlan }}'
+                description: 'VLAN {{ vlan }} | VNI 10{{ vlan }}'
+                rd: auto
+                vni:
+                 layer_3: true
+                 vni_number: 10{{ vlan }}
+              {% endfor %}
           state: merged
         when: inventory_hostname.split('-')[1] in vlan_map.keys()
 
