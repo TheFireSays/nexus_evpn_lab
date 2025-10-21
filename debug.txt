@@ -1,13 +1,9 @@
 
-PLAY [BGP configuration] *******************************************************
+PLAY [Create VRFs and apply VNI, route-distinguisher, and route-targets] *******
 
-TASK [Global BGP config] *******************************************************
-changed: [dub-ssp1]
-
-TASK [BGP address-family config for route reflectors - SSPs and SPs] ***********
-An exception occurred during task execution. To see the full traceback, use -vvv. The error was: dub-ssp1(config-router-af)#
-fatal: [dub-ssp1]: FAILED! => {"msg": "Unexpected failure during module execution: advertise l2vpn evpn\r\r\n                              ^\r\n% Invalid command at '^' marker.\r\n\rdub-ssp1(config-router-af)# ", "stdout": ""}
+TASK [Create VRF, apply VNI and route distinguisher] ***************************
+fatal: [dub-st1-lf1]: FAILED! => {"changed": false, "msg": "state is merged but all of the following are missing: config"}
 
 PLAY RECAP *********************************************************************
-dub-ssp1                   : ok=1    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+dub-st1-lf1                : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
 

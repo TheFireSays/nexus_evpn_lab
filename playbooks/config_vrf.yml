@@ -11,8 +11,8 @@
     tasks:
       - name: Create VRF, apply VNI and route distinguisher
         cisco.nxos.nxos_vrf_global:
-          vrfs:  |
-            config:
+          vrfs:
+            config:  |
               {% set site = inventory_hostname.split('-')[1] %}
               {% for vlan in vlan_map[site] %}
               - name: 'vrf{{ vlan }}'
@@ -22,7 +22,7 @@
                  layer_3: true
                  vni_number: 10{{ vlan }}
               {% endfor %}
-          state: merged
+            state: merged
         when: inventory_hostname.split('-')[1] in vlan_map.keys()
 
       - name: VRF address-family - apply RD and RT
