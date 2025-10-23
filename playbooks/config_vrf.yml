@@ -15,8 +15,8 @@
             vrfs:  |
               {% set site = inventory_hostname.split('-')[1] %}
               {% for l3_vni_vlan in l3_vni_l3_vni_vlan_map[site] %}
-              - name: 'vrf_{{ l3_vni_vlan }}'
-                description: 'l3_vni_vlan {{ l3_vni_vlan }} | VNI 10{{ l3_vni_vlan }}'
+              - name: 'evpn_transit_vrf_{{ l3_vni_vlan }}'
+                description: 'VLAN {{ l3_vni_vlan }} | VNI 10{{ l3_vni_vlan }}'
                 rd: auto
                 vni:
                  layer_3: true
