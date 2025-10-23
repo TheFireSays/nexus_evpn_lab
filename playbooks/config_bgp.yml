@@ -24,15 +24,14 @@
           address_family:
             - afi: l2vpn
               safi: evpn
+              maximum_paths:
+                parallel_paths: "{{ max_ecmp_paths }}"
               retain:
                 route_target:
                   retain_all: true
               
             - afi: ipv4
               safi: unicast 
-              advertise_l2vpn_evpn: true    
-              advertise_pip: true            
-              advertise_system_mac: true 
               maximum_paths:
                 parallel_paths: "{{ max_ecmp_paths }}"
       when: inventory_hostname not in groups['leafs']
@@ -44,11 +43,11 @@
           address_family:
             - afi: l2vpn
               safi: evpn
+              maximum_paths:
+                parallel_paths: "{{ max_ecmp_paths }}"
+
             - afi: ipv4
               safi: unicast
-              advertise_l2vpn_evpn: true    
-              advertise_pip: true            
-              advertise_system_mac: true
               maximum_paths:
                 parallel_paths: "{{ max_ecmp_paths }}"
       when: inventory_hostname in groups['leafs']
@@ -80,3 +79,4 @@
                     both: true
                   route_reflector_client: "{{ item.rr_client }}"
       loop: "{{ bgp_neighbors }}"
+      when: inventory_hostname in groups['leafs']

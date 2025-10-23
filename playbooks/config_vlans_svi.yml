@@ -1,5 +1,5 @@
 ---
-- name: Create VLANs and SVIs
+- name: Create VRFVLANs and SVIs
   hosts: leafs
   gather_facts: false
 
@@ -13,7 +13,7 @@
         state: merged
       loop: "{{ vlans }}"
 
-    - name: Create anycast SVIs
+    - name: Create SVIs
       cisco.nxos.nxos_l3_interfaces:
         config:
           - name: "vlan{{ item.id }}"
@@ -31,13 +31,13 @@
         state: merged
       loop: "{{ vlans }}"
 
-    - name: Show VLANs
+    - name: Show VLANs command
       cisco.nxos.nxos_command:
         commands:
           - "show vlan"
       register: sh_vlans
         
-    - name: Show SVIs
+    - name: Show SVIs command
       cisco.nxos.nxos_command:
         commands:
           - "show ip interface brief | i Vlan"
