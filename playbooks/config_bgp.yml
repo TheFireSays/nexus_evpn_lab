@@ -43,23 +43,25 @@
           address_family:
             - afi: l2vpn
               safi: evpn
+              route_reflector_client: true
               maximum_paths:
                 parallel_paths: "{{ max_ecmp_paths }}"
 
             - afi: ipv4
               safi: unicast
+              route_reflector_client: true
               maximum_paths:
                 parallel_paths: "{{ max_ecmp_paths }}"
-      when: inventory_hostname in groups['leafs']
+      when: inventory_hostname in groups['spines']
 
     - name: Configure BGP neighbor settings globally
       cisco.nxos.nxos_bgp_neighbor_address_family:
         config:
           as_number: "{{ asn }}"
           neighbors:
-            - neighbor_address: "{{ item.neighbor }}"
+            - neighbor_address: "{{ bgp_neighbors.neighbor }}"
               remote_as: "{{ asn }}"
-              description: "{{ item.description }}"
+              description: "{{ bgp_neighbors.description }}"
               update_source: loopback0
               timers:
                 keepalive: "{{ bgp_keepalive }}"
@@ -71,12 +73,12 @@
         config:
           as_number: "{{ asn }}"
           neighbors:
-            - neighbor_address: "{{ item.neighbor }}"
+            - neighbor_address: "{{ bgp_neighbors.neighbor }}"
               address_family: 
                 - afi: l2vpn
                   safi: evpn
                   send_community:
                     both: true
-                  route_reflector_client: "{{ item.rr_client }}"
+
       loop: "{{ bgp_neighbors }}"
       when: inventory_hostname in groups['leafs']
