@@ -44,8 +44,7 @@
             - afi: l2vpn
               safi: evpn
               route_reflector_client: true
-              maximum_paths:
-                parallel_paths: "{{ max_ecmp_paths }}"
+
 
             - afi: ipv4
               safi: unicast
@@ -63,6 +62,8 @@
               remote_as: "{{ asn }}"
               description: "{{ bgp_neighbors.description }}"
               update_source: loopback0
+              maximum_paths:
+                parallel_paths: "{{ max_ecmp_paths }}"
               timers:
                 keepalive: "{{ bgp_keepalive }}"
                 holdtime: "{{ bgp_holdtime }}"
@@ -82,3 +83,9 @@
 
       loop: "{{ bgp_neighbors }}"
       when: inventory_hostname in groups['leafs']
+
+
+what am i advertising? connected?
+transit vlan
+transit SVI
+  SS

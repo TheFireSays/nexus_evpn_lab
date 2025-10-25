@@ -3,7 +3,7 @@ device_info:
     dev_serial: 9XF1H1L03E6
     dev_vendor: Cisco
     os_version: 10.5(1)
-interfaces:
+interfaceerfaces:
 -   description: Uplink to dub-st1-sp1
     enabled: true
     mtu: 9216
@@ -12,14 +12,14 @@ interfaces:
     enabled: true
     mtu: 9216
     name: port-channel1112
-l3_interfaces:
+l3_interfaceerfaces:
 -   ipv4:
     -   address: 30.30.30.98/30
     name: port-channel1111
 -   ipv4:
     -   address: 30.30.30.106/30
     name: port-channel1112
-lag_interfaces:
+lag_interfaceerfaces:
 -   members:
     -   member: Ethernet1/1
         mode: active
@@ -33,32 +33,3 @@ lag_interfaces:
         mode: active
     name: port-channel1112
 
-vlans:
-  - vlan_id: 100
-    name: Public_information
-    vni: 10100
-    svi:
-      ip: "50.50.110.1/24"
-      description: "VLAN 100 anycast gateway"
-  - vlan_id: 200
-    name: Confidential_information
-    vni: 10200
-    svi:
-      ip: "50.50.120.1/24"
-      description: "VLAN 200 anycast gateway"
-  - vlan_id: 300
-    name: Classified_Secret
-    vni: 10300
-    svi:
-      ip: "50.50.130.1/24"
-      description: "VLAN 300 anycast gateway"
-
-# BGP neighbors - leaf <> spine
-bgp_neighbors:
-  - neighbor: 20.20.20.5
-    description: "dub-st1-sp1"
-    rr_client: false
-  
-  - neighbor: 20.20.20.6
-    description: "dub-st1-sp2"
-    rr_client: false

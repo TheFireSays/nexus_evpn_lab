@@ -13,3 +13,14 @@
       cisco.nxos.nxos_vlans:
         config: "{{ transit_vlans }}"
         state: merged
+  
+    - name: Show VLANs command
+      cisco.nxos.nxos_command:
+        commands:
+          - "show vlan"
+      register: sh_vlans
+
+    - name: Print VLANs
+      ansible.builtin.debug:
+        var: sh_vlans.stdout_lines
+
