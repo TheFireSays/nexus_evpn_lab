@@ -12,7 +12,7 @@
             enabled: "{{ item.enabled }}"
             mapped_vni: "{{ item.mapped_vni }}"
         state: merged
-      loop: (( vlans ))
+      loop: "{{ vlans }}"
 
     - name: Create transit VLANs
       cisco.nxos.nxos_vlans:
@@ -22,7 +22,8 @@
             enabled: "{{ item.enabled }}"
             mapped_vni: "{{ item.mapped_vni }}"
         state: merged
-      loop: (( transit_vlans ))
+      loop: "{{ transit_vlans }}"
+
 
     - name: Show VLANs command
       cisco.nxos.nxos_command:
