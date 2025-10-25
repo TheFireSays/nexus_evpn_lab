@@ -16,7 +16,7 @@
   tasks:
     - name: Create VLAN and description
       cisxo.nxos.nxos_vlans:
-        config:
+        config: 
           - vlan_ id: "{{ vlan }}"
             name: "VLAN: {{ vlan }} | VNID: 10{{ vlan }}"
             mapped_vni: "10{{ vlan }}"
