@@ -25,7 +25,7 @@ become_method: sudo
 tags: ('all',)
 check: True
 inventory: ('/home/osboxes/Desktop/nexus_evpn_lab/inventory',)
-subset: dub-st1-lf1
+subset: dub-st1-lf2
 forks: 5
 1 plays in playbooks/config_vlans.yml
 
@@ -39,86 +39,659 @@ Loading collection ansible.utils from /home/osboxes/.ansible/collections/ansible
 redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
 redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
 redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
-<1.1.1.11> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_vlans
-<1.1.1.11> attempting to start connection
-<1.1.1.11> using connection plugin ansible.netcommon.network_cli
+<1.1.1.12> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_vlans
+<1.1.1.12> attempting to start connection
+<1.1.1.12> using connection plugin ansible.netcommon.network_cli
 Found ansible-connection at path /usr/bin/ansible-connection
-<1.1.1.11> local domain socket does not exist, starting it
-<1.1.1.11> control socket path is /home/osboxes/.ansible/pc/55dc2ff51f
-<1.1.1.11> Loading collection ansible.builtin from 
-<1.1.1.11> redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
-<1.1.1.11> Loading collection ansible.netcommon from /home/osboxes/.ansible/collections/ansible_collections/ansible/netcommon
-<1.1.1.11> Loading collection ansible.utils from /home/osboxes/.ansible/collections/ansible_collections/ansible/utils
-<1.1.1.11> redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
-<1.1.1.11> Loading collection cisco.nxos from /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos
-<1.1.1.11> redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
-<1.1.1.11> local domain socket listeners started successfully
-<1.1.1.11> loaded cliconf plugin ansible_collections.cisco.nxos.plugins.cliconf.nxos from path /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/cliconf/nxos.py for network_os nxos
-<1.1.1.11> ssh type is set to auto
-<1.1.1.11> autodetecting ssh_type
-<1.1.1.11> ssh type is now set to libssh
-<1.1.1.11> Loading collection ansible.builtin from 
-<1.1.1.11> local domain socket path is /home/osboxes/.ansible/pc/55dc2ff51f
-<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
-<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_vlans at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_vlans.py
-<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_vlans
-<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
-<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: complete
-fatal: [dub-st1-lf1]: FAILED! => {
+<1.1.1.12> local domain socket does not exist, starting it
+<1.1.1.12> control socket path is /home/osboxes/.ansible/pc/e4365f2bdb
+<1.1.1.12> Loading collection ansible.builtin from 
+<1.1.1.12> redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
+<1.1.1.12> Loading collection ansible.netcommon from /home/osboxes/.ansible/collections/ansible_collections/ansible/netcommon
+<1.1.1.12> Loading collection ansible.utils from /home/osboxes/.ansible/collections/ansible_collections/ansible/utils
+<1.1.1.12> redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
+<1.1.1.12> Loading collection cisco.nxos from /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos
+<1.1.1.12> redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
+<1.1.1.12> local domain socket listeners started successfully
+<1.1.1.12> loaded cliconf plugin ansible_collections.cisco.nxos.plugins.cliconf.nxos from path /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/cliconf/nxos.py for network_os nxos
+<1.1.1.12> ssh type is set to auto
+<1.1.1.12> autodetecting ssh_type
+<1.1.1.12> ssh type is now set to libssh
+<1.1.1.12> Loading collection ansible.builtin from 
+<1.1.1.12> local domain socket path is /home/osboxes/.ansible/pc/e4365f2bdb
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_vlans at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_vlans.py
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_vlans
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: complete
+ok: [dub-st1-lf2] => (item={'vlan_id': 100, 'name': 'Public_information', 'mapped_vni': 10100, 'enabled': True}) => {
+    "ansible_loop_var": "item",
+    "before": [
+        {
+            "enabled": true,
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
     "changed": false,
+    "commands": [],
     "invocation": {
         "module_args": {
             "config": [
                 {
-                    "enabled": null,
-                    "id": 100,
-                    "mapped_vni": null,
-                    "mode": null,
+                    "enabled": true,
+                    "mapped_vni": 10100,
                     "name": "Public_information",
                     "state": null,
-                    "svi": {
-                        "description": "VLAN 100 anycast gateway",
-                        "ip": "50.50.110.1/24"
-                    },
-                    "vlan_id": null,
-                    "vni": 10100
-                },
-                {
-                    "enabled": null,
-                    "id": 200,
-                    "mapped_vni": null,
-                    "mode": null,
-                    "name": "Confidential_information",
-                    "state": null,
-                    "svi": {
-                        "description": "VLAN 100 anycast gateway",
-                        "ip": "50.50.120.1/24"
-                    },
-                    "vlan_id": null,
-                    "vni": 10200
-                },
-                {
-                    "enabled": null,
-                    "id": 300,
-                    "mapped_vni": null,
-                    "mode": null,
-                    "name": "Classified_Secret",
-                    "state": null,
-                    "svi": {
-                        "description": "VLAN 100 anycast gateway",
-                        "ip": "50.50.130.1/24"
-                    },
-                    "vlan_id": null,
-                    "vni": 10300
+                    "vlan_id": 100
                 }
             ],
             "running_config": null,
             "state": "merged"
         }
     },
-    "msg": "missing required arguments: vlan_id found in config"
+    "item": {
+        "enabled": true,
+        "mapped_vni": 10100,
+        "name": "Public_information",
+        "vlan_id": 100
+    }
+}
+redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
+redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+<1.1.1.12> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_vlans
+<1.1.1.12> attempting to start connection
+<1.1.1.12> using connection plugin ansible.netcommon.network_cli
+Found ansible-connection at path /usr/bin/ansible-connection
+<1.1.1.12> found existing local domain socket, using it!
+<1.1.1.12> invoked shell using ssh_type: libssh
+<1.1.1.12> ssh connection done, setting terminal
+<1.1.1.12> loaded terminal plugin for network_os nxos
+<1.1.1.12> firing event: on_become
+<1.1.1.12> firing event: on_open_shell()
+<1.1.1.12> ssh connection has completed successfully
+<1.1.1.12> updating play_context for connection
+<1.1.1.12> Loading collection ansible.builtin from 
+<1.1.1.12> local domain socket path is /home/osboxes/.ansible/pc/e4365f2bdb
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_vlans at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_vlans.py
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_vlans
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: complete
+ok: [dub-st1-lf2] => (item={'vlan_id': 200, 'name': 'Confidential_information', 'mapped_vni': 10200, 'enabled': True}) => {
+    "ansible_loop_var": "item",
+    "before": [
+        {
+            "enabled": true,
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
+    "changed": false,
+    "commands": [],
+    "invocation": {
+        "module_args": {
+            "config": [
+                {
+                    "enabled": true,
+                    "mapped_vni": 10200,
+                    "name": "Confidential_information",
+                    "state": null,
+                    "vlan_id": 200
+                }
+            ],
+            "running_config": null,
+            "state": "merged"
+        }
+    },
+    "item": {
+        "enabled": true,
+        "mapped_vni": 10200,
+        "name": "Confidential_information",
+        "vlan_id": 200
+    }
+}
+redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+<1.1.1.12> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_vlans
+<1.1.1.12> attempting to start connection
+<1.1.1.12> using connection plugin ansible.netcommon.network_cli
+Found ansible-connection at path /usr/bin/ansible-connection
+<1.1.1.12> found existing local domain socket, using it!
+<1.1.1.12> updating play_context for connection
+<1.1.1.12> Loading collection ansible.builtin from 
+<1.1.1.12> local domain socket path is /home/osboxes/.ansible/pc/e4365f2bdb
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_vlans at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_vlans.py
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_vlans
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: complete
+ok: [dub-st1-lf2] => (item={'vlan_id': 300, 'name': 'Classified_Secret', 'mapped_vni': 10300, 'enabled': True}) => {
+    "ansible_loop_var": "item",
+    "before": [
+        {
+            "enabled": true,
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
+    "changed": false,
+    "commands": [],
+    "invocation": {
+        "module_args": {
+            "config": [
+                {
+                    "enabled": true,
+                    "mapped_vni": 10300,
+                    "name": "Classified_Secret",
+                    "state": null,
+                    "vlan_id": 300
+                }
+            ],
+            "running_config": null,
+            "state": "merged"
+        }
+    },
+    "item": {
+        "enabled": true,
+        "mapped_vni": 10300,
+        "name": "Classified_Secret",
+        "vlan_id": 300
+    }
+}
+
+TASK [Create transit VLANs] ****************************************************
+task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/config_vlans.yml:17
+redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
+Loading collection ansible.netcommon from /home/osboxes/.ansible/collections/ansible_collections/ansible/netcommon
+Loading collection ansible.utils from /home/osboxes/.ansible/collections/ansible_collections/ansible/utils
+redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+<1.1.1.12> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_vlans
+<1.1.1.12> attempting to start connection
+<1.1.1.12> using connection plugin ansible.netcommon.network_cli
+Found ansible-connection at path /usr/bin/ansible-connection
+<1.1.1.12> found existing local domain socket, using it!
+<1.1.1.12> updating play_context for connection
+<1.1.1.12> Loading collection ansible.builtin from 
+<1.1.1.12> local domain socket path is /home/osboxes/.ansible/pc/e4365f2bdb
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_vlans at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_vlans.py
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_vlans
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: complete
+changed: [dub-st1-lf2] => (item={'vlan_id': '101', 'name': 'VLAN_101', 'mapped_vni': 10101, 'enabled': True}) => {
+    "after": [
+        {
+            "enabled": true,
+            "mode": "ce",
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "mode": "ce",
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "mode": "ce",
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "mode": "ce",
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
+    "ansible_loop_var": "item",
+    "before": [
+        {
+            "enabled": true,
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
+    "changed": true,
+    "commands": [
+        "vlan 101",
+        "name VLAN_101",
+        "no shutdown",
+        "vn-segment 10101"
+    ],
+    "invocation": {
+        "module_args": {
+            "config": [
+                {
+                    "enabled": true,
+                    "mapped_vni": 10101,
+                    "name": "VLAN_101",
+                    "state": null,
+                    "vlan_id": 101
+                }
+            ],
+            "running_config": null,
+            "state": "merged"
+        }
+    },
+    "item": {
+        "enabled": true,
+        "mapped_vni": 10101,
+        "name": "VLAN_101",
+        "vlan_id": "101"
+    }
+}
+redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+<1.1.1.12> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_vlans
+<1.1.1.12> attempting to start connection
+<1.1.1.12> using connection plugin ansible.netcommon.network_cli
+Found ansible-connection at path /usr/bin/ansible-connection
+<1.1.1.12> found existing local domain socket, using it!
+<1.1.1.12> updating play_context for connection
+<1.1.1.12> Loading collection ansible.builtin from 
+<1.1.1.12> local domain socket path is /home/osboxes/.ansible/pc/e4365f2bdb
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_vlans at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_vlans.py
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_vlans
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: complete
+changed: [dub-st1-lf2] => (item={'vlan_id': '201', 'name': 'VLAN_201', 'mapped_vni': 10201, 'enabled': True}) => {
+    "after": [
+        {
+            "enabled": true,
+            "mode": "ce",
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "mode": "ce",
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "mode": "ce",
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "mode": "ce",
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
+    "ansible_loop_var": "item",
+    "before": [
+        {
+            "enabled": true,
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
+    "changed": true,
+    "commands": [
+        "vlan 201",
+        "name VLAN_201",
+        "no shutdown",
+        "vn-segment 10201"
+    ],
+    "invocation": {
+        "module_args": {
+            "config": [
+                {
+                    "enabled": true,
+                    "mapped_vni": 10201,
+                    "name": "VLAN_201",
+                    "state": null,
+                    "vlan_id": 201
+                }
+            ],
+            "running_config": null,
+            "state": "merged"
+        }
+    },
+    "item": {
+        "enabled": true,
+        "mapped_vni": 10201,
+        "name": "VLAN_201",
+        "vlan_id": "201"
+    }
+}
+redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+<1.1.1.12> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_vlans
+<1.1.1.12> attempting to start connection
+<1.1.1.12> using connection plugin ansible.netcommon.network_cli
+Found ansible-connection at path /usr/bin/ansible-connection
+<1.1.1.12> found existing local domain socket, using it!
+<1.1.1.12> updating play_context for connection
+<1.1.1.12> Loading collection ansible.builtin from 
+<1.1.1.12> local domain socket path is /home/osboxes/.ansible/pc/e4365f2bdb
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_vlans at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_vlans.py
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_vlans
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: complete
+changed: [dub-st1-lf2] => (item={'vlan_id': '301', 'name': 'VLAN_301', 'mapped_vni': 10301, 'enabled': True}) => {
+    "after": [
+        {
+            "enabled": true,
+            "mode": "ce",
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "mode": "ce",
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "mode": "ce",
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "mode": "ce",
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
+    "ansible_loop_var": "item",
+    "before": [
+        {
+            "enabled": true,
+            "name": "default",
+            "state": "active",
+            "vlan_id": 1
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10100,
+            "name": "Public_information",
+            "state": "active",
+            "vlan_id": 100
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10200,
+            "name": "Confidential_information",
+            "state": "active",
+            "vlan_id": 200
+        },
+        {
+            "enabled": true,
+            "mapped_vni": 10300,
+            "name": "Classified_Secret",
+            "state": "active",
+            "vlan_id": 300
+        }
+    ],
+    "changed": true,
+    "commands": [
+        "vlan 301",
+        "name VLAN_301",
+        "no shutdown",
+        "vn-segment 10301"
+    ],
+    "invocation": {
+        "module_args": {
+            "config": [
+                {
+                    "enabled": true,
+                    "mapped_vni": 10301,
+                    "name": "VLAN_301",
+                    "state": null,
+                    "vlan_id": 301
+                }
+            ],
+            "running_config": null,
+            "state": "merged"
+        }
+    },
+    "item": {
+        "enabled": true,
+        "mapped_vni": 10301,
+        "name": "VLAN_301",
+        "vlan_id": "301"
+    }
+}
+
+TASK [Show VLANs command] ******************************************************
+task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/config_vlans.yml:28
+redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
+Loading collection ansible.netcommon from /home/osboxes/.ansible/collections/ansible_collections/ansible/netcommon
+Loading collection ansible.utils from /home/osboxes/.ansible/collections/ansible_collections/ansible/utils
+redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+<1.1.1.12> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_command
+<1.1.1.12> attempting to start connection
+<1.1.1.12> using connection plugin ansible.netcommon.network_cli
+Found ansible-connection at path /usr/bin/ansible-connection
+<1.1.1.12> found existing local domain socket, using it!
+<1.1.1.12> updating play_context for connection
+<1.1.1.12> Loading collection ansible.builtin from 
+<1.1.1.12> local domain socket path is /home/osboxes/.ansible/pc/e4365f2bdb
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_command at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_command.py
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_command
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
+<1.1.1.12> ANSIBLE_NETWORK_IMPORT_MODULES: complete
+ok: [dub-st1-lf2] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "commands": [
+                "show vlan"
+            ],
+            "interval": 1,
+            "match": "all",
+            "retries": 9,
+            "wait_for": null
+        }
+    },
+    "stdout": [
+        "VLAN Name                             Status    Ports\n---- -------------------------------- --------- -------------------------------\n1    default                          active    \n100  Public_information               active    \n200  Confidential_information         active    \n300  Classified_Secret                active    \n\nVLAN Type         Vlan-mode\n---- -----        ----------\n1    enet         CE     \n100  enet         CE     \n200  enet         CE     \n300  enet         CE     \n\nRemote SPAN VLANs\n-------------------------------------------------------------------------------\n\nPrimary  Secondary  Type             Ports\n-------  ---------  ---------------  -------------------------------------------"
+    ],
+    "stdout_lines": [
+        [
+            "VLAN Name                             Status    Ports",
+            "---- -------------------------------- --------- -------------------------------",
+            "1    default                          active    ",
+            "100  Public_information               active    ",
+            "200  Confidential_information         active    ",
+            "300  Classified_Secret                active    ",
+            "",
+            "VLAN Type         Vlan-mode",
+            "---- -----        ----------",
+            "1    enet         CE     ",
+            "100  enet         CE     ",
+            "200  enet         CE     ",
+            "300  enet         CE     ",
+            "",
+            "Remote SPAN VLANs",
+            "-------------------------------------------------------------------------------",
+            "",
+            "Primary  Secondary  Type             Ports",
+            "-------  ---------  ---------------  -------------------------------------------"
+        ]
+    ]
+}
+
+TASK [Print VLANs] *************************************************************
+task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/config_vlans.yml:34
+redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
+Loading collection ansible.netcommon from /home/osboxes/.ansible/collections/ansible_collections/ansible/netcommon
+Loading collection ansible.utils from /home/osboxes/.ansible/collections/ansible_collections/ansible/utils
+redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+ok: [dub-st1-lf2] => {
+    "sh_vlans.stdout_lines": [
+        [
+            "VLAN Name                             Status    Ports",
+            "---- -------------------------------- --------- -------------------------------",
+            "1    default                          active    ",
+            "100  Public_information               active    ",
+            "200  Confidential_information         active    ",
+            "300  Classified_Secret                active    ",
+            "",
+            "VLAN Type         Vlan-mode",
+            "---- -----        ----------",
+            "1    enet         CE     ",
+            "100  enet         CE     ",
+            "200  enet         CE     ",
+            "300  enet         CE     ",
+            "",
+            "Remote SPAN VLANs",
+            "-------------------------------------------------------------------------------",
+            "",
+            "Primary  Secondary  Type             Ports",
+            "-------  ---------  ---------------  -------------------------------------------"
+        ]
+    ]
 }
 
 PLAY RECAP *********************************************************************
-dub-st1-lf1                : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+dub-st1-lf2                : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
