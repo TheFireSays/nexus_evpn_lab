@@ -1,0 +1,30 @@
+---
+asn: 62000
+
+vlans:
+  - vlan_id: 300
+    name: VLAN_300
+    mapped_vni: 10300
+    enabled: true
+  - vlan_id: 400
+    name: VLAN_400
+    mapped_vni: 10400
+    enabled: true
+  - vlan_id: 500
+    name: VLAN_500
+    mapped_vni: 10500
+    enabled: true
+
+transit_vlans:
+  - vlan_id: 301
+    name: VLAN_301
+    mapped_vni: 10301
+    enabled: true
+  - vlan_id: 401
+    name: VLAN_401
+    mapped_vni: 10401
+    enabled: true
+  - vlan_id: 501
+    name: VLAN_501
+    mapped_vni: 10501
+    enabled: true

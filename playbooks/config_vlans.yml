@@ -3,30 +3,13 @@
   hosts: leafs
   gather_facts: false
 
-  vars:
-    vlan_map:
-      vlans: 
-        st1: [100, 200, 300]
-        st1_transit: [101, 201, 301]
-        st2: [200, 300, 400]
-        st2_transit: [201, 301, 401]
-        st3: [300, 400, 500]
-        st3_transit: [301, 401, 501]
-
   tasks:
-    - name: Create VLAN and description
+    - name: Create host VLANs
       cisxo.nxos.nxos_vlans:
-        config:
-          - vlan_ id: "{{ vlan }}"
-            name: "VLAN: {{ vlan }} | VNID: 10{{ vlan }}"
-            mapped_vni: "10{{ vlan }}"
-            enabled: true
+        config: "{{ vlans }}"
         state: merged
 
-    - name: Create transit VLAN and description
+    - name: Create transit VLANs
       cisxo.nxos.nxos_vlans:
-        config:
-          - vlan_ id: "{{ transit_vlan }}"
-            name: "Transit VLAN for VLAN: {{ vlan }} | Transit VNID: 10{{ vlan }}"
-            enabled: true
+        config: "{{ transit_vlans }}"
         state: merged
