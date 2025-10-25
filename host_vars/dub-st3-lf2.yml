@@ -39,19 +39,19 @@ vlans:
     vni: 10300
     svi:
       ip: "50.50.130.1/24"
-      description: "VLAN 100 anycast gateway"
+      description: "VLAN 300 anycast gateway"
   - id: 400
     name: Classified_Top_Secret
     vni: 10400
     svi:
       ip: "50.50.140.1/24"
-      description: "VLAN 100 anycast gateway"
+      description: "VLAN 400 anycast gateway"
   - id: 500
     name: Classified_Super_Duper_Secret
     vni: 10500
     svi:
       ip: "50.50.150.1/24"
-      description: "VLAN 100 anycast gateway"
+      description: "VLAN 500 anycast gateway"
 
 # BGP neighbors - leaf <> spine
 bgp_neighbors:

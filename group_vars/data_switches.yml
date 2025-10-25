@@ -29,10 +29,3 @@ loopback_ips:
   - name: loopback1
     ipv4:
       address: "20.20.20.{{ ansible_host.split('.')[3] }}/32"
-
-vlans:
-  - 100
-  - 200
-  - 300
-  - 400
-  - 500

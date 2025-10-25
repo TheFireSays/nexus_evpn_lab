@@ -3,6 +3,7 @@ device_info:
     dev_serial: 905BPFHZK6P
     dev_vendor: Cisco
     os_version: 10.5(1)
+
 interfaces:
 -   description: Uplink to dub-st3-sp1
     enabled: true
@@ -12,6 +13,7 @@ interfaces:
     enabled: true
     mtu: 9216
     name: port-channel3231
+
 l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.129/30
@@ -19,6 +21,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.137/30
     name: port-channel3231
+
 lag_interfaces:
 -   members:
     -   member: Ethernet1/1
@@ -39,19 +42,19 @@ vlans:
     vni: 10300
     svi:
       ip: "50.50.130.1/24"
-      description: "VLAN 100 anycast gateway"
+      description: "VLAN 300 anycast gateway"
   - id: 400
     name: Classified_Top_Secret
     vni: 10400
     svi:
       ip: "50.50.140.1/24"
-      description: "VLAN 100 anycast gateway"
+      description: "VLAN 400 anycast gateway"
   - id: 500
     name: Classified_Super_Duper_Secret
     vni: 10500
     svi:
       ip: "50.50.150.1/24"
-      description: "VLAN 100 anycast gateway"
+      description: "VLAN 500 anycast gateway"
 
 # BGP neighbors - leaf <> spine
 bgp_neighbors:

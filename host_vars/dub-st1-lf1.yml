@@ -34,24 +34,24 @@ lag_interfaces:
     name: port-channel1112
 
 vlans:
-  - id: 100
+  - vlan_id: 100
     name: Public_information
     vni: 10100
     svi:
       ip: "50.50.110.1/24"
       description: "VLAN 100 anycast gateway"
-  - id: 200
+  - vlan_id: 200
     name: Confidential_information
     vni: 10200
     svi:
       ip: "50.50.120.1/24"
-      description: "VLAN 100 anycast gateway"
-  - id: 300
+      description: "VLAN 200 anycast gateway"
+  - vlan_id: 300
     name: Classified_Secret
     vni: 10300
     svi:
       ip: "50.50.130.1/24"
-      description: "VLAN 100 anycast gateway"
+      description: "VLAN 300 anycast gateway"
 
 # BGP neighbors - leaf <> spine
 bgp_neighbors:
