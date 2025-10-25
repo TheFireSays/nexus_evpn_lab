@@ -2,29 +2,29 @@
 asn: 61000
 
 vlans:
-  - vlan_id: 100
+  - id: "100"
     name: VLAN_100
-    mapped_vni: 10100
+    vni: 10100
     enabled: true
-  - vlan_id: 200
+  - id: "200"
     name: VLAN_200
-    mapped_vni: 10200
+    vni: 10200
     enabled: true
-  - vlan_id: 300
+  - id: "300"
     name: VLAN_300
-    mapped_vni: 10300
+    vni: 10300
     enabled: true
 
 transit_vlans:
-  - vlan_id: 101
+  - id: "101"
     name: VLAN_101
-    mapped_vni: 10101
+    vni: 10101
     enabled: true
-  - vlan_id: 201
+  - id: "201"
     name: VLAN_201
-    mapped_vni: 10201
+    vni: 10201
     enabled: true
-  - vlan_id: 301
+  - id: "301"
     name: VLAN_301
-    mapped_vni: 10301
+    vni: 10301
     enabled: true

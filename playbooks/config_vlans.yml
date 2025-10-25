@@ -5,11 +5,11 @@
 
   tasks:
     - name: Create host VLANs
-      cisxo.nxos.nxos_vlans:
+      cisco.nxos.nxos_vlans:
         config: "{{ vlans }}"
         state: merged
 
     - name: Create transit VLANs
-      cisxo.nxos.nxos_vlans:
+      cisco.nxos.nxos_vlans:
         config: "{{ transit_vlans }}"
         state: merged

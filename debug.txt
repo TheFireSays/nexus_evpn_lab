@@ -1,8 +1,123 @@
+ansible-playbook [core 2.16.3]
+  config file = /home/osboxes/Desktop/nexus_evpn_lab/ansible.cfg
+  configured module search path = ['/home/osboxes/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/osboxes/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible-playbook
+  python version = 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] (/usr/bin/python3)
+  jinja version = 3.1.2
+  libyaml = True
+Using /home/osboxes/Desktop/nexus_evpn_lab/ansible.cfg as config file
+setting up inventory plugins
+Loading collection ansible.builtin from 
+Parsed /home/osboxes/Desktop/nexus_evpn_lab/inventory inventory source with ini plugin
+Loading collection cisco.nxos from /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos
+Loading callback plugin default of type stdout, v2.0 from /usr/lib/python3/dist-packages/ansible/plugins/callback/default.py
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
 
-PLAY [Create VRFs and apply VNI, route-distinguisher, and route-targets] *******
+PLAYBOOK: config_vlans.yml *****************************************************
+Positional arguments: playbooks/config_vlans.yml
+verbosity: 4
+connection: ssh
+become_method: sudo
+tags: ('all',)
+check: True
+inventory: ('/home/osboxes/Desktop/nexus_evpn_lab/inventory',)
+subset: dub-st1-lf1
+forks: 5
+1 plays in playbooks/config_vlans.yml
 
-TASK [Create VRF, apply VNI and route distinguisher] ***************************
-fatal: [dub-st1-lf1]: FAILED! => {"changed": false, "msg": "state is merged but all of the following are missing: config"}
+PLAY [Create VLANs] ************************************************************
+
+TASK [Create host VLANs] *******************************************************
+task path: /home/osboxes/Desktop/nexus_evpn_lab/playbooks/config_vlans.yml:7
+redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
+Loading collection ansible.netcommon from /home/osboxes/.ansible/collections/ansible_collections/ansible/netcommon
+Loading collection ansible.utils from /home/osboxes/.ansible/collections/ansible_collections/ansible/utils
+redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
+redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+<1.1.1.11> Using network group action cisco.nxos.nxos for cisco.nxos.nxos_vlans
+<1.1.1.11> attempting to start connection
+<1.1.1.11> using connection plugin ansible.netcommon.network_cli
+Found ansible-connection at path /usr/bin/ansible-connection
+<1.1.1.11> local domain socket does not exist, starting it
+<1.1.1.11> control socket path is /home/osboxes/.ansible/pc/55dc2ff51f
+<1.1.1.11> Loading collection ansible.builtin from 
+<1.1.1.11> redirecting (type: connection) ansible.builtin.network_cli to ansible.netcommon.network_cli
+<1.1.1.11> Loading collection ansible.netcommon from /home/osboxes/.ansible/collections/ansible_collections/ansible/netcommon
+<1.1.1.11> Loading collection ansible.utils from /home/osboxes/.ansible/collections/ansible_collections/ansible/utils
+<1.1.1.11> redirecting (type: terminal) ansible.builtin.nxos to cisco.nxos.nxos
+<1.1.1.11> Loading collection cisco.nxos from /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos
+<1.1.1.11> redirecting (type: cliconf) ansible.builtin.nxos to cisco.nxos.nxos
+<1.1.1.11> local domain socket listeners started successfully
+<1.1.1.11> loaded cliconf plugin ansible_collections.cisco.nxos.plugins.cliconf.nxos from path /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/cliconf/nxos.py for network_os nxos
+<1.1.1.11> ssh type is set to auto
+<1.1.1.11> autodetecting ssh_type
+<1.1.1.11> ssh type is now set to libssh
+<1.1.1.11> Loading collection ansible.builtin from 
+<1.1.1.11> local domain socket path is /home/osboxes/.ansible/pc/55dc2ff51f
+<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: enabled
+<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: found cisco.nxos.nxos_vlans at /home/osboxes/.ansible/collections/ansible_collections/cisco/nxos/plugins/modules/nxos_vlans.py
+<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: running cisco.nxos.nxos_vlans
+<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: _load_params skipped for action plugin in direct execution
+<1.1.1.11> ANSIBLE_NETWORK_IMPORT_MODULES: complete
+fatal: [dub-st1-lf1]: FAILED! => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "config": [
+                {
+                    "enabled": null,
+                    "id": 100,
+                    "mapped_vni": null,
+                    "mode": null,
+                    "name": "Public_information",
+                    "state": null,
+                    "svi": {
+                        "description": "VLAN 100 anycast gateway",
+                        "ip": "50.50.110.1/24"
+                    },
+                    "vlan_id": null,
+                    "vni": 10100
+                },
+                {
+                    "enabled": null,
+                    "id": 200,
+                    "mapped_vni": null,
+                    "mode": null,
+                    "name": "Confidential_information",
+                    "state": null,
+                    "svi": {
+                        "description": "VLAN 100 anycast gateway",
+                        "ip": "50.50.120.1/24"
+                    },
+                    "vlan_id": null,
+                    "vni": 10200
+                },
+                {
+                    "enabled": null,
+                    "id": 300,
+                    "mapped_vni": null,
+                    "mode": null,
+                    "name": "Classified_Secret",
+                    "state": null,
+                    "svi": {
+                        "description": "VLAN 100 anycast gateway",
+                        "ip": "50.50.130.1/24"
+                    },
+                    "vlan_id": null,
+                    "vni": 10300
+                }
+            ],
+            "running_config": null,
+            "state": "merged"
+        }
+    },
+    "msg": "missing required arguments: vlan_id found in config"
+}
 
 PLAY RECAP *********************************************************************
 dub-st1-lf1                : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
