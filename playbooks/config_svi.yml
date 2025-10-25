@@ -45,7 +45,7 @@
     - name: Show SVIs command
       cisco.nxos.nxos_command:
         commands:
-          - "show ip interface brief | i Vlan"
+          - "show ip interface brief vrf all | i Vlan"
       register: sh_svis
 
     - name: Show SVIs
