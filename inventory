@@ -32,22 +32,22 @@ spines
 leafs
 
 [site_1:children]
-dub-st1-lf1 ansible_host=1.1.1.11
-dub-st1-lf2 ansible_host=1.1.1.12
-dub-st1-sp1 ansible_host=1.1.1.5
-dub-st1-sp2 ansible_host=1.1.1.6
+dub-st1-lf1
+dub-st1-lf2
+dub-st1-sp1
+dub-st1-sp2
 
 [site_2:children]
-dub-st2-lf1 ansible_host=1.1.1.13
-dub-st2-lf2 ansible_host=1.1.1.14
-dub-st2-sp1 ansible_host=1.1.1.7
-dub-st2-sp2 ansible_host=1.1.1.8
+dub-st2-lf1
+dub-st2-lf2
+dub-st2-sp1
+dub-st2-sp2
 
 [site_3:children]
-dub-st3-lf1 ansible_host=1.1.1.15
-dub-st3-lf2 ansible_host=1.1.1.16
-dub-st3-sp1 ansible_host=1.1.1.9
-dub-st3-sp2 ansible_host=1.1.1.10
+dub-st3-lf1
+dub-st3-lf2
+dub-st3-sp1
+dub-st3-sp2
 
 [mgmt_switches:vars]
 ansible_connection=network_cli
