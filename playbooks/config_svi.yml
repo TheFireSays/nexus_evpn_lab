@@ -7,8 +7,8 @@
     - name: Configure interface VRF membership
       cisco.nxos.nxos_vrf_interfaces:
         config:
-          name: "interface vlan{{ item.vlan }}"
-          vrf_name: "{{ item.vrf_name }}"
+          - name: "Vlan{{ item.vlan }}"
+          - vrf_name: "{{ item.vrf_name }}"
         state: merged
       loop: "{{ vrf }}"
 
