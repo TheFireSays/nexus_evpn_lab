@@ -1,20 +1,6 @@
 ---
 asn: 61000
 
-vlans:
-  - id: "100"
-    name: VLAN_100
-    vni: 10100
-    enabled: true
-  - id: "200"
-    name: VLAN_200
-    vni: 10200
-    enabled: true
-  - id: "300"
-    name: VLAN_300
-    vni: 10300
-    enabled: true
-
 transit_vlans:
   - id: "101"
     name: VLAN_101
