@@ -47,11 +47,11 @@ transit_vlans:
 #VRFs
 vrf:
   - vlan: 201
-    vrf_name: "Confidential_information"
+    name: "Confidential_information"
   - vlan: 301
-    vrf_name: "Classified_Secret"
+    name: "Classified_Secret"
   - vlan: 401
-    vrf_name: "Classified_Top_Secret"
+    name: "Classified_Top_Secret"
 
 # SVIs
 svi:
