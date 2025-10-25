@@ -20,14 +20,15 @@ vlans:
   - vlan_id: 100
     name: "Public_information"
     mapped_vni: 10100
-
+    enabled: true
   - vlan_id: 200
     name: "Confidential_information"
     mapped_vni: 10200
-
+    enabled: true
   - vlan_id: 300
     name: "Classified_Secret"
     mapped_vni: 10300
+    enabled: true
 
 transit_vlans:
   - vlan_id: "101"

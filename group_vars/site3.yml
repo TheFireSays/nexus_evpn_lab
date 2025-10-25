@@ -8,12 +8,15 @@ vlans:
   - vlan_id: 300
     name: Classified_Secret
     mapped_vni: 10300
+    enabled: true
   - vlan_id: 400
     name: Classified_Top_Secret
     mapped_vni: 10400
+    enabled: true
   - vlan_id: 500
     name: Classified_Super_Duper_Secret
     mapped_vni: 10500
+    enabled: true
 
 transit_vlans:
   - vlan_id: "301"
