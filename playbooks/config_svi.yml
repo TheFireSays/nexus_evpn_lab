@@ -15,7 +15,7 @@
     - name: Create host and transit SVIs
       cisco.nxos.nxos_l3_interfaces:
         config:
-          - name: "vlan{{ item.name }}"
+          - name: "{{ item.name }}"
             ipv4:
               - address: "{{ item.ip}}"
         state: merged
@@ -24,7 +24,7 @@
     - name: Add SVI description
       cisco.nxos.nxos_interfaces: 
         config:
-          - name: "vlan{{ item.name }}"
+          - name: "{{ item.name }}"
             description: "{{ item.description }}"
             enabled: true
         state: merged
@@ -40,7 +40,7 @@
     - name: Configure fabric forwarding, global anycast mac
       cisco.nxos.nxos_config:
         lines:
-          - "fabric forwarding anycast-gateway-mac {{ anycast_mac }}"
+          - "fabric forwarding anycast-gateway-mac {{ anycast_gw_mac }}"
 
     - name: Show SVIs command
       cisco.nxos.nxos_command:
