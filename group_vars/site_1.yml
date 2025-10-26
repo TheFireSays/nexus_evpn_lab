@@ -45,11 +45,14 @@ transit_vlans:
     enabled: true
 
 host_ports:
-  trunk:
-    - name: e1/5
+  - name: e1/5
+    mode: trunk
+    trunk:
       native_vlan: 999
       allowed_vlans: 100,200,300
-    - name: e1/6
+  - name: e1/6
+    mode: trunk
+    trunk:
       native_vlan: 999
       allowed_vlans: 100,200,300
 

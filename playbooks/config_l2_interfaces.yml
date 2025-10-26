@@ -7,3 +7,4 @@
     - name: Configure leaf switch trunk ports
       cisco.nxos.nxos_l2_interfaces:
         config: "{{ host_ports }}"
+        state: merged
