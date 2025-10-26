@@ -1,0 +1,15 @@
+---
+- name: Configure VTEP interface
+  hosts: leafs
+  gather_facts: false
+
+  tasks:
+    - name: Create NVE interface
+      cisco.nxos.nxos_vxlan_vtep:
+        interface: "{{ item.interface }}"
+        description: "{{ item.description }}"
+        host_reachability: "{{ item.host_reachability }}"
+        source_interface: "{{ item.source_interface }}"
+        shutdown: "{{ item.shutdown }}"
+        source_interface_hold_down_time: "{{ item.source_interface_hold_down_time }}" 
+      loop: "{{ nve }}"

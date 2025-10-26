@@ -1,9 +1,8 @@
 --- 
-
-anycast_gw:
- - 50.50.100.1/24
- - 50.50.200.1/24
- - 50.50.300.1/24
- - 50.50.400.1/24
- - 50.50.500.1/24
-
+nve:
+  interface: nve1
+  description: VXLAN tunnel endpoint
+  host_reachability: true
+  source_interface: loopback1
+  shutdown: false
+  source_interface_hold_down_time: 120
