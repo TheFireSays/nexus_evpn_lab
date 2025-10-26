@@ -12,4 +12,3 @@
         source_interface: "{{ item.source_interface }}"
         shutdown: "{{ item.shutdown }}"
         source_interface_hold_down_time: "{{ item.source_interface_hold_down_time }}" 
-      loop: "{{ nve }}"
