@@ -5,11 +5,12 @@
 
   tasks:
     - name: Ensure interfaces are switchports
-      cisco.nxos.nxos_l2_interfaces:
+      cisco.nxos.nxos_config:
         config:
-          - name: "{{ item.name }}"
-            mode: trunk
-      loop: "{{ host_ports }}"
+          lines:
+            - switchport
+          parents: "interface {{ item.name }}"
+          loop: "{{ host_ports }}"
 
     - name: Configure leaf switch trunk ports
       cisco.nxos.nxos_l2_interfaces:
