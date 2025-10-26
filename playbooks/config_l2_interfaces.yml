@@ -1,0 +1,9 @@
+---
+- name: Configure VLANs on leaf switch ports
+  hosts: leafs
+  gather_facts: false
+
+  tasks:
+    - name: Configure leaf switch trunk ports
+      cisco.nxos.nxos_l2_interfaces:
+        config: "{{ host_ports }}"

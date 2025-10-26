@@ -31,6 +31,17 @@ transit_vlans:
     name: VLAN_501
     mapped_vni: 10501
     enabled: true
+  - vlan_id: 999
+    name: "Blackhole VLAN"
+    enabled: false
+
+host_ports:
+  - name: e1/5
+    native_vlan: 999
+    allowed_vlans: 300,400,500
+  - name: e1/6
+    native_vlan: 999
+    allowed_vlans: 300,400,500
 
 #VRFs
 vrf:
