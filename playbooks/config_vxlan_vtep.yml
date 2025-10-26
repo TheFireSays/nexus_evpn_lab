@@ -6,9 +6,10 @@
   tasks:
     - name: Create NVE interface
       cisco.nxos.nxos_vxlan_vtep:
-        interface: "{{ interface }}"
-        description: "{{ description }}"
-        host_reachability: "{{ host_reachability }}"
-        source_interface: "{{ source_interface }}"
-        shutdown: "{{ shutdown }}"
-        source_interface_hold_down_time: "{{ source_interface_hold_down_time }}" 
+        interface: "{{ nve.interface }}"
+        description: "{{ nve.description }}"
+        host_reachability: "{{ nve.host_reachability }}"
+        source_interface: "{{ nve.source_interface }}"
+        shutdown: "{{ nve.shutdown }}"
+        source_interface_hold_down_time: "{{ nve.source_interface_hold_down_time }}" 
+
