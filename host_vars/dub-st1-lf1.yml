@@ -3,7 +3,8 @@ device_info:
     dev_serial: 9XF1H1L03E6
     dev_vendor: Cisco
     os_version: 10.5(1)
-interfaceerfaces:
+
+interfaces:
 -   description: Uplink to dub-st1-sp1
     enabled: true
     mtu: 9216
@@ -12,14 +13,16 @@ interfaceerfaces:
     enabled: true
     mtu: 9216
     name: port-channel1112
-l3_interfaceerfaces:
+
+l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.98/30
     name: port-channel1111
 -   ipv4:
     -   address: 30.30.30.106/30
     name: port-channel1112
-lag_interfaceerfaces:
+
+lag_interfaces:
 -   members:
     -   member: Ethernet1/1
         mode: active

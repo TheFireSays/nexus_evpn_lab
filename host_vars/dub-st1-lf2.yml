@@ -3,6 +3,7 @@ device_info:
     dev_serial: 97LSJCCFSN6
     dev_vendor: Cisco
     os_version: 10.5(1)
+
 interfaces:
 -   description: Uplink to dub-st1-sp1
     enabled: true
@@ -12,6 +13,7 @@ interfaces:
     enabled: true
     mtu: 9216
     name: port-channel1112
+
 l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.102/30
@@ -19,6 +21,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.110/30
     name: port-channel1112
+    
 lag_interfaces:
 -   members:
     -   member: Ethernet1/1

@@ -3,6 +3,7 @@ device_info:
     dev_serial: 9O18AB69AN8
     dev_vendor: Cisco
     os_version: 10.5(1)
+
 interfaces:
 -   description: Uplink to dub-ssp1
     enabled: true
@@ -28,6 +29,7 @@ interfaces:
     enabled: true
     mtu: 9216
     name: port-channel1112
+
 l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.2/30
@@ -47,6 +49,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.101/30
     name: port-channel1112
+    
 lag_interfaces:
 -   members:
     -   member: Ethernet1/1

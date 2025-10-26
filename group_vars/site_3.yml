@@ -46,6 +46,9 @@ host_ports:
 
 access_vlans: [300,400,500]
 
+l2_vnis: [10300, 10400, 10500]
+l3_vnis: [10301, 10401, 10501]
+
 #VRFs
 vrf:
   - vlan: 301

@@ -3,6 +3,7 @@ device_info:
     dev_serial: 9ZLS3120A5W
     dev_vendor: Cisco
     os_version: 10.5(1)
+
 interfaces:
 -   description: Uplink to dub-ssp1
     enabled: true
@@ -28,6 +29,7 @@ interfaces:
     enabled: true
     mtu: 9216
     name: port-channel2222
+
 l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.14/30
@@ -47,6 +49,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.125/30
     name: port-channel2222
+    
 lag_interfaces:
 -   members:
     -   member: Ethernet1/1

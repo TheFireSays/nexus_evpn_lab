@@ -12,4 +12,14 @@
         source_interface: "{{ nve.source_interface }}"
         shutdown: "{{ nve.shutdown }}"
         source_interface_hold_down_time: "{{ nve.source_interface_hold_down_time }}" 
+    
+    - name: Add member VNIs - L2 
+      cisco.nxos.nxos_vxlan_vtep_vni:
+      interface: "{{ nve.interface }}"
+      vni: "{{ item.l2_vni }}"
+      suppress_arp: true
 
+    - name: Add member VNIs - L3
+      cisco.nxos.nxos_vxlan_vtep_vni:
+      interface: "{{ nve.interface }}"
+      vni: "{{ item.l3_vni }}"

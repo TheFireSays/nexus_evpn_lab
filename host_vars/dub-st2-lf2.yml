@@ -3,6 +3,7 @@ device_info:
     dev_serial: 9BERDY8Q3M3
     dev_vendor: Cisco
     os_version: 10.5(1)
+
 interfaces:
 -   description: Uplink to dub-st2-sp1
     enabled: true
@@ -12,6 +13,7 @@ interfaces:
     enabled: true
     mtu: 9216
     name: port-channel2122
+
 l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.118/30
@@ -19,6 +21,7 @@ l3_interfaces:
 -   ipv4:
     -   address: 30.30.30.126/30
     name: port-channel2122
+    
 lag_interfaces:
 -   members:
     -   member: Ethernet1/1
