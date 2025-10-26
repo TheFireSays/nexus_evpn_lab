@@ -9,9 +9,9 @@
           lines:
             - switchport
           parents: "interface {{ item.name }}"
-      loop: "{{ host_ports }}"
+      loop: "{{ trunk_ports }}"
 
     - name: Configure leaf switch trunk ports
       cisco.nxos.nxos_l2_interfaces:
-        config: "{{ host_ports }}"
+        config: "{{ trunk_ports }}"
         state: merged

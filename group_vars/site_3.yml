@@ -44,6 +44,8 @@ host_ports:
       native_vlan: 999
       allowed_vlans: 300,400,500
 
+access_vlans: [300,400,500]
+
 #VRFs
 vrf:
   - vlan: 301
