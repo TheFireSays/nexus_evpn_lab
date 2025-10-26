@@ -44,7 +44,7 @@ transit_vlans:
     mapped_vni: 10301
     enabled: true
 
-trunk_ports:
+host_ports:
   - name: e1/5
     mode: trunk
     trunk:
