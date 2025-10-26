@@ -45,12 +45,13 @@ transit_vlans:
     enabled: true
 
 host_ports:
-  - name: e1/5
-    native_vlan: 999
-    allowed_vlans: 100,200,300
-  - name: e1/6
-    native_vlan: 999
-    allowed_vlans: 100,200,300
+  trunk:
+    - name: e1/5
+      native_vlan: 999
+      allowed_vlans: 100,200,300
+    - name: e1/6
+      native_vlan: 999
+      allowed_vlans: 100,200,300
 
 #VRFs
 vrf:
