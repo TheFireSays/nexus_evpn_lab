@@ -4,6 +4,14 @@
   gather_facts: false
 
   tasks:
+    - name: Ensure interfaces are switchports
+      cisco.nxos.nxos_l2_interfaces:
+        config:
+          - name: "{{ item.name }}"
+            mode: layer2
+            enabled: true
+      loop: "{{ host_ports }}"
+
     - name: Configure leaf switch trunk ports
       cisco.nxos.nxos_l2_interfaces:
         config: "{{ host_ports }}"
