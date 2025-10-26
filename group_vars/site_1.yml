@@ -29,9 +29,6 @@ vlans:
     name: "Classified_Secret"
     mapped_vni: 10300
     enabled: true
-  - vlan_id: 999
-    name: "Blackhole VLAN"
-    enabled: false
 
 transit_vlans:
   - vlan_id: "101"

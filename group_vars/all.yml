@@ -15,3 +15,7 @@ sites:
 
 pim_rp_address: 10.10.10.254
 
+blackhole_vlan:
+  - vlan_id: 999
+    name: "Blackhole VLAN"
+    enabled: false

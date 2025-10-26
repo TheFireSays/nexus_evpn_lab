@@ -24,6 +24,9 @@
         state: merged
       loop: "{{ transit_vlans }}"
 
+    - name: Create Blackhole VLAN
+      cisco.nxos.nxos_vlans:
+        config: "{{ blackhole_vlan }}"
 
     - name: Show VLANs command
       cisco.nxos.nxos_command:

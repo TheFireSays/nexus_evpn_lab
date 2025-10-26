@@ -43,9 +43,6 @@ transit_vlans:
     name: VLAN_401
     mapped_vni: 10401
     enabled: true
-  - vlan_id: 999
-    name: "Blackhole VLAN"
-    enabled: false
 
 host_ports:
   - name: e1/5
