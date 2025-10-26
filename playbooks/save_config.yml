@@ -6,3 +6,8 @@
     - name: Save running-config to startup-config
       cisco.nxos.nxos_config:
         save_when: always
+        when: inventory_hostname in groups['data_switches']
+    - name: Save running-config to startup-config
+      cisco.nxos.nxos_config:
+        save_when: always
+        when: inventory_hostname in groups['mgmt_switches']
