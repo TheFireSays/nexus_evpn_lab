@@ -8,7 +8,7 @@
       cisco.nxos.nxos_l2_interfaces:
         config:
           - name: "{{ item.name }}"
-            mode: layer2
+            mode: trunk
             enabled: true
       loop: "{{ host_ports }}"
 
