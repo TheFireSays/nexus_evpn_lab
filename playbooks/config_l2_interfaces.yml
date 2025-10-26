@@ -6,7 +6,6 @@
   tasks:
     - name: Ensure interfaces are switchports
       cisco.nxos.nxos_config:
-        config:
           lines:
             - switchport
           parents: "interface {{ item.name }}"
