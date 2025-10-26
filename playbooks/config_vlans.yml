@@ -26,7 +26,10 @@
 
     - name: Create Blackhole VLAN
       cisco.nxos.nxos_vlans:
-        config: "{{ blackhole_vlan }}"
+        config:
+          - vlan_id: 999
+            name: "Blackhole_vlan"
+            enabled: false 
 
     - name: Show VLANs command
       cisco.nxos.nxos_command:
