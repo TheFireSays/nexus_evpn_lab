@@ -16,7 +16,7 @@
     - name: Add member VNIs - L2 
       cisco.nxos.nxos_vxlan_vtep_vni:
         interface: "{{ nve.interface }}"
-        vni: "{{ item.l2_vni }}"
+        vni: "{{ item}}"
         suppress_arp: true
       loop: "{{ l2_vnis }}"
     
@@ -24,5 +24,5 @@
     - name: Add member VNIs - L3
       cisco.nxos.nxos_vxlan_vtep_vni:
         interface: "{{ nve.interface }}"
-        vni: "{{ item.l3_vni }}"
+        vni: "{{ item }}"
       loop: "{{ l3_vnis }}"
